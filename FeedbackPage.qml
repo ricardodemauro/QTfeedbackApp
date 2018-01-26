@@ -1,18 +1,99 @@
 import QtQuick 2.9
+import QtQuick.Window 2.3
+import QtQuick.Layouts 1.3
 import QtQuick.Controls 2.2
 
 Page {
-    id: feedbackPage
+    id: pageFeedback
     visible: true
 
+    property double preferredWidthButton: 120
+    property double preferredHeightButton: 180
+
+    function buttonClicked() {
+        console.info("button clicked")
+    }
+
     header: Label {
-        text: qsTr("Leave Comment Page")
+        text: "How likely are you to recommend..."
+        horizontalAlignment: Text.AlignHCenter
         font.pixelSize: Qt.application.font.pixelSize * 2
+
         padding: 10
     }
 
-    Label {
-        text: qsTr("You are on feedback Page.")
-        anchors.centerIn: parent
+    footer: Rectangle {
+        id: footerRectangle
+        width: parent.width
+        height: 50
+        color: "white"
+        transformOrigin: Item.Center
+        anchors.horizontalCenter: parent.horizontalCenter
+
+        Button {
+
+            onClicked: svcVM.startClickHandler()
+            text: qsTr("Admin")
+            anchors.left: parent.left
+            anchors.leftMargin: 40
+            anchors.verticalCenter: parent.verticalCenter
+        }
+    }
+
+    RowLayout {
+        id: layout
+        height: 280
+        anchors.rightMargin: 15
+        anchors.leftMargin: 15
+        anchors.verticalCenter: parent.verticalCenter
+        anchors.right: parent.right
+        anchors.left: parent.left
+
+
+        ImageButton {
+            text: "Extremely likely"
+            Layout.preferredHeight: preferredHeightButton
+            source: "shared/images/emoji/extremely_likely.png"
+            Layout.fillWidth: true
+            Layout.preferredWidth: preferredWidthButton
+        }
+
+        ImageButton {
+            text: "Likely"
+            Layout.preferredHeight: preferredHeightButton
+            source: "shared/images/emoji/likely.png"
+            Layout.fillWidth: true
+            Layout.preferredWidth: preferredWidthButton
+        }
+        ImageButton {
+            text: "Likely"
+            Layout.preferredHeight: preferredHeightButton
+            source: "shared/images/emoji/likely.png"
+            Layout.fillWidth: true
+            Layout.preferredWidth: preferredWidthButton
+        }
+        ImageButton {
+            text: "Unlikely"
+            Layout.preferredHeight: preferredHeightButton
+            source: "shared/images/emoji/unlikely.png"
+            Layout.fillWidth: true
+            Layout.preferredWidth: preferredWidthButton
+        }
+        ImageButton {
+            text: "Extremely unlikely"
+            Layout.preferredHeight: preferredHeightButton
+            source: "shared/images/emoji/extremely_unlikely.png"
+            Layout.fillWidth: true
+            Layout.preferredWidth: preferredWidthButton
+        }
+    }
+
+    ImageButton {
+        width: 193
+        text: "Don't know"
+        anchors.bottom: parent.bottom
+        anchors.horizontalCenter: parent.horizontalCenter
+        source: "shared/images/emoji/dont_know.png"
+        height: preferredHeightButton * 0.75
     }
 }

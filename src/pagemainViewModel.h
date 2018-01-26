@@ -31,6 +31,8 @@ public:
 
     Q_INVOKABLE void initHandler();
 
+    Q_INVOKABLE void quitHandler();
+
     QString currentPage();
 
     bool canGoBack();

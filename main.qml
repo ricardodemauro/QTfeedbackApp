@@ -13,7 +13,7 @@ ApplicationWindow {
     title: qsTr("FeedbackApp")
 
     Component.onCompleted: mainVM.initHandler()
-    visibility: Window.FullScreen
+    visibility: Window.Maximized
 
     PageMainViewModel {
         id: mainVM
@@ -38,8 +38,20 @@ ApplicationWindow {
                 verticalAlignment: Qt.AlignVCenter
                 Layout.fillWidth: true
             }
-            ToolButton {
-                text: qsTr(":")
+        }
+    }
+
+    footer: ToolBar {
+        RowLayout {
+            anchors.fill: parent
+
+            Button {
+                onClicked: mainVM.quitHandler()
+                text: qsTr("Quit")
+                highlighted: true
+                anchors.left: parent.left
+                anchors.leftMargin: 40
+                anchors.verticalCenter: parent.verticalCenter
             }
         }
     }

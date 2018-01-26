@@ -25,7 +25,7 @@ Page {
     footer: Rectangle {
         id: footerRectangle
         width: parent.width
-        height: 50
+        height: 80
         color: "white"
         transformOrigin: Item.Center
         anchors.horizontalCenter: parent.horizontalCenter

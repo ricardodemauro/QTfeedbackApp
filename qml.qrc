@@ -11,5 +11,12 @@
         <file>ThanksPage.qml</file>
         <file>qtquickcontrols2.conf</file>
         <file>FeedbackPage.qml</file>
+        <file>shared/images/emoji/dont_know.png</file>
+        <file>shared/images/emoji/extremely_likely.png</file>
+        <file>shared/images/emoji/extremely_unlikely.png</file>
+        <file>shared/images/emoji/likely.png</file>
+        <file>shared/images/emoji/neither_likely_or_unlikely.png</file>
+        <file>shared/images/emoji/unlikely.png</file>
+        <file>ImageButton.qml</file>
     </qresource>
 </RCC>

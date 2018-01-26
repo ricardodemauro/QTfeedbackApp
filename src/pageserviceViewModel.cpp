@@ -1,7 +1,6 @@
 #include "pageServiceViewModel.h"
 #include <QCoreApplication>
 #include <src/constants.h>
-//#include <src/services/appService.h>
 #include <QString>
 
 PageServiceViewModel::PageServiceViewModel(QObject *parent) :

@@ -2,6 +2,7 @@
 #include <src/constants.h>
 #include <src/services/navigationService.h>
 #include <memory>
+#include <QCoreApplication>
 
 using namespace Interfaces;
 
@@ -90,6 +91,11 @@ void PageMainViewModel::adminClickHandler()
 void PageMainViewModel::initHandler()
 {
     registerListenerNavigation();
+}
+
+void PageMainViewModel::quitHandler()
+{
+    QCoreApplication::quit();
 }
 
 PAGE PageMainViewModel::currentPageIndex()
