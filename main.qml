@@ -10,7 +10,7 @@ ApplicationWindow {
     visible: true
     width: 640
     height: 480
-    title: qsTr("FeedbackApp")
+    title: qsTr("AppName")
 
     Component.onCompleted: mainVM.initHandler()
     visibility: Window.Maximized
@@ -27,7 +27,7 @@ ApplicationWindow {
         RowLayout {
             anchors.fill: parent
             ToolButton {
-                text: qsTr("‹")
+                text: "‹"
                 enabled: mainVM.canGoBack
                 onClicked: mainVM.backPageHandler()
             }

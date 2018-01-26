@@ -51,7 +51,7 @@ Page {
 
 
         ImageButton {
-            text: "Extremely likely"
+            text: qsTr("Extremely likely")
             Layout.preferredHeight: preferredHeightButton
             source: "shared/images/emoji/extremely_likely.png"
             Layout.fillWidth: true

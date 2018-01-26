@@ -4,6 +4,7 @@
 #include <src/pagemainViewModel.h>
 #include <src/pageServiceViewModel.h>
 
+
 int main(int argc, char *argv[])
 {
 #if defined(Q_OS_WIN)
