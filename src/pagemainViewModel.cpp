@@ -1,5 +1,9 @@
 #include "pageMainViewModel.h"
 #include <src/constants.h>
+#include <src/services/navigationService.h>
+#include <memory>
+
+using namespace Interfaces;
 
 PageMainViewModel::PageMainViewModel(QObject *parent) :
     QObject(parent),
@@ -37,7 +41,9 @@ void PageMainViewModel::backPageHandler()
     int _currentPage = currentPageIndex();
     switch (_currentPage) {
     case Constants::Pages::Service:
+        break;
     case Constants::Pages::Feedback:
+        gotoPage(Constants::Pages::Service);
         break;
     case Constants::Pages::Thanks:
         gotoPage(Constants::Pages::Feedback);
@@ -81,6 +87,11 @@ void PageMainViewModel::adminClickHandler()
     gotoPage(Constants::Pages::Service);
 }
 
+void PageMainViewModel::initHandler()
+{
+    registerListenerNavigation();
+}
+
 PAGE PageMainViewModel::currentPageIndex()
 {
     return m_currentPageIndex;
@@ -97,9 +108,24 @@ void PageMainViewModel::setCurrentPageIndex(const PAGE &page)
     emit currentPageIndexChanged();
 }
 
+void PageMainViewModel::getNavigationMessage(NavigateMessage &message)
+{
+    PAGE p = message.Page();
+    gotoPage(p);
+}
+
 void PageMainViewModel::gotoPage(const PAGE & pageIndex)
 {
     setCurrentPageIndex(pageIndex);
     emit currentPageChanged();
     emit canGoBackChanged();
+}
+
+void PageMainViewModel::registerListenerNavigation()
+{
+    IHandleNavigationViewModel* in_ptr = dynamic_cast<IHandleNavigationViewModel*>(this);
+    std::shared_ptr<IHandleNavigationViewModel> ptr(in_ptr);
+
+    //ptr = std::make_shared<IHandleNavigationViewModel>(in_ptr);
+    Services::NavigationService::getInstance().registerListener(ptr);
 }

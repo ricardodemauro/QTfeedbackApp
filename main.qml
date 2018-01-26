@@ -2,6 +2,7 @@ import QtQuick 2.9
 import QtQuick.Window 2.10
 import QtQuick.Controls 2.2
 import QtQuick.Layouts 1.3
+
 import feedbackapp.backend 1.0
 
 ApplicationWindow {
@@ -11,17 +12,14 @@ ApplicationWindow {
     height: 480
     title: qsTr("FeedbackApp")
 
+    Component.onCompleted: mainVM.initHandler()
+
     PageMainViewModel {
         id: mainVM
         onCurrentPageChanged: function() {
             stack.replace(Qt.resolvedUrl(mainVM.currentPage));
             console.info("current page " + mainVM.currentPage);
         }
-    }
-
-    Rectangle {
-        color: "#212126"
-        anchors.fill: parent
     }
 
     header: ToolBar {
@@ -49,6 +47,11 @@ ApplicationWindow {
         id: stack
         anchors.fill: parent
         focus: true
-        initialItem: ServicePage
+        initialItem: {
+            Item : Qt.resolvedUrl("ServicePage.qml")
+        }
+        onCurrentItemChanged: function(){
+            console.info("stackview component item changed")
+        }
     }
 }

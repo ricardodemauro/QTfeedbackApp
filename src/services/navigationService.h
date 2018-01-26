@@ -1,9 +1,11 @@
 #ifndef NAVIGATIONSERVICE_H
 #define NAVIGATIONSERVICE_H
 
-#include <src/pageViewModelBase.h>
 #include <src/messages/navigateMessage.h>
-#include <map>
+#include <vector>
+#include <QString>
+#include <src/interfaces/iHandleNavigationViewModel.h>
+#include <memory>
 
 namespace Services
 {
@@ -12,9 +14,7 @@ namespace Services
 	public:
 		void navigate(Messages::NavigateMessage &message);
 
-        void registerListener(std::string &name, void *viewModel);
-
-		void unregisterListener(std::string &name);
+        void registerListener(std::shared_ptr<Interfaces::IHandleNavigationViewModel> &viewModel);
 
         static NavigationService& getInstance()
         {
@@ -30,7 +30,7 @@ namespace Services
         NavigationService(NavigationService const& copy);               // Not Implemented
         NavigationService& operator =(NavigationService const& copy);   // Not Implemented
 
-		std::map<std::string, PageViewModelBase*> m_listeners;
+        std::shared_ptr<Interfaces::IHandleNavigationViewModel> m_listener;
 	};
 }
 

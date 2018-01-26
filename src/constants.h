@@ -16,6 +16,10 @@ namespace Constants
 
     const QString MESSAGE_NAVIGATE = "Nav";
 
+    const std::string FILE_CSV = "feedback.csv";
+
+    const int DEFAULT_SELECTED_FEEDBACK = 1;
+
     enum Pages
     {
         Service = 0,

@@ -4,10 +4,12 @@
 #include <QObject>
 #include <src/constants.h>
 #include <src/pageViewModelBase.h>
+#include <src/interfaces/iHandleNavigationViewModel.h>
 
 class PageMainViewModel :
         public QObject,
-        public PageViewModelBase
+        public PageViewModelBase,
+        public Interfaces::IHandleNavigationViewModel
 {
     Q_OBJECT
 
@@ -27,6 +29,8 @@ public:
 
     Q_INVOKABLE void adminClickHandler();
 
+    Q_INVOKABLE void initHandler();
+
     QString currentPage();
 
     bool canGoBack();
@@ -34,6 +38,7 @@ public:
 	PAGE currentPageIndex();
     void setCurrentPageIndex(const PAGE &page);
 
+    void getNavigationMessage(Messages::NavigateMessage &message);
 signals:
     void currentPageChanged();
     void currentPageIndexChanged();
@@ -43,6 +48,8 @@ private:
 	PAGE m_currentPageIndex;
 
     void gotoPage(const PAGE &pageIndex);
+
+    void registerListenerNavigation();
 };
 
 #endif // MAINVIEWMODEL_H

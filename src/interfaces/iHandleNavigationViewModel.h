@@ -8,7 +8,7 @@ namespace Interfaces
     class IHandleNavigationViewModel
     {
     public:
-        virtual void getNavigationMessage(const Messages::NavigateMessage &message) = 0;
+        virtual void getNavigationMessage(Messages::NavigateMessage &message) = 0;
 	};
 }
 

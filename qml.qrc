@@ -9,5 +9,7 @@
         <file>shared/images/navigation_previous_item.png</file>
         <file>LeaveCommentPage.qml</file>
         <file>ThanksPage.qml</file>
+        <file>qtquickcontrols2.conf</file>
+        <file>FeedbackPage.qml</file>
     </qresource>
 </RCC>

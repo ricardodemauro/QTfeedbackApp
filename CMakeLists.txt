@@ -17,6 +17,9 @@ file(GLOB SOURCES
     src/services/*.cpp
     src/interfaces/*.h
     src/interfaces/*.cpp
+    src/models/*.h
+    src/models/*.cpp
+    src/thirdpart/*.h
 )
 
 

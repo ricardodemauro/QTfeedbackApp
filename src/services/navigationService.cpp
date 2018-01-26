@@ -1,27 +1,24 @@
 #include <src/services/navigationService.h>
+#include <map>
+#include <iostream>
+#include <src/interfaces/iHandleNavigationViewModel.h>
 
 namespace Services
 {
-    NavigationService::NavigationService()
-    {
-
-    }
-
-    void NavigationService::unregisterListener(std::string &name)
-    {
-        m_listeners.erase(name);
-    }
-
-    void NavigationService::navigate(Messages::NavigateMessage &message)
-    {
-        for(std::map<std::string, PageViewModelBase*>::iterator it = m_listeners.begin(); it != m_listeners.end(); ++it)
-        {
-
-        }
-    }
-
-    void NavigationService::registerListener(std::string & name, void *viewModel)
+	NavigationService::NavigationService()
 	{
+
+	}
+
+
+	void NavigationService::navigate(Messages::NavigateMessage &message)
+	{
+        m_listener.get()->getNavigationMessage(message);
+	}
+
+    void NavigationService::registerListener(std::shared_ptr<Interfaces::IHandleNavigationViewModel> &viewModel)
+	{
+		m_listener = viewModel;
 	}
 
 }
