@@ -7,8 +7,7 @@ import feedbackapp.backend 1.0
 
 Page {
     id: page
-    width: parent.width
-    height: parent.width
+    visible: true
 
     PageServiceViewModel {
         id: svcVM

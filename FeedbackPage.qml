@@ -2,8 +2,8 @@ import QtQuick 2.9
 import QtQuick.Controls 2.2
 
 Page {
-    width: parent.width
-    height: parent.width
+    id: feedbackPage
+    visible: true
 
     header: Label {
         text: qsTr("Leave Comment Page")

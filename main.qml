@@ -13,6 +13,7 @@ ApplicationWindow {
     title: qsTr("FeedbackApp")
 
     Component.onCompleted: mainVM.initHandler()
+    visibility: Window.FullScreen
 
     PageMainViewModel {
         id: mainVM
