@@ -1,9 +1,54 @@
-import QtQuick 2.10
+import QtQuick 2.9
 import QtQuick.Window 2.10
+import QtQuick.Controls 2.2
+import QtQuick.Layouts 1.3
+import feedbackapp.backend 1.0
 
-Window {
+ApplicationWindow {
+    id: applicationWindow
     visible: true
     width: 640
     height: 480
-    title: qsTr("Hello World")
+    title: qsTr("FeedbackApp")
+
+    PageMainViewModel {
+        id: mainVM
+        onCurrentPageChanged: function() {
+            stack.replace(Qt.resolvedUrl(mainVM.currentPage));
+            console.info("current page " + mainVM.currentPage);
+        }
+    }
+
+    Rectangle {
+        color: "#212126"
+        anchors.fill: parent
+    }
+
+    header: ToolBar {
+        RowLayout {
+            anchors.fill: parent
+            ToolButton {
+                text: qsTr("‹")
+                enabled: mainVM.canGoBack
+                onClicked: mainVM.backPageHandler()
+            }
+            Label {
+                text: mainVM.currentPage
+                elide: Label.ElideRight
+                horizontalAlignment: Qt.AlignHCenter
+                verticalAlignment: Qt.AlignVCenter
+                Layout.fillWidth: true
+            }
+            ToolButton {
+                text: qsTr(":")
+            }
+        }
+    }
+
+    StackView {
+        id: stack
+        anchors.fill: parent
+        focus: true
+        initialItem: ServicePage
+    }
 }

@@ -2,5 +2,12 @@
     <qresource prefix="/">
         <file>main.qml</file>
         <file>ServicePage.qml</file>
+        <file>shared/images/toolbar.png</file>
+        <file>shared/images/button_default.png</file>
+        <file>shared/images/button_pressed.png</file>
+        <file>shared/images/navigation_next_item.png</file>
+        <file>shared/images/navigation_previous_item.png</file>
+        <file>LeaveCommentPage.qml</file>
+        <file>ThanksPage.qml</file>
     </qresource>
 </RCC>

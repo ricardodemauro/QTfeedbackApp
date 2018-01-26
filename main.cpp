@@ -1,6 +1,9 @@
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
 
+#include <src/pagemainViewModel.h>
+#include <src/pageServiceViewModel.h>
+
 int main(int argc, char *argv[])
 {
 #if defined(Q_OS_WIN)
@@ -9,6 +12,9 @@ int main(int argc, char *argv[])
 
     QGuiApplication app(argc, argv);
 
+    qmlRegisterType<PageMainViewModel>("feedbackapp.backend", 1, 0, "PageMainViewModel");
+    qmlRegisterType<PageServiceViewModel>("feedbackapp.backend", 1, 0, "PageServiceViewModel");
+
     QQmlApplicationEngine engine;
     engine.load(QUrl(QStringLiteral("qrc:/main.qml")));
     if (engine.rootObjects().isEmpty())
@@ -16,3 +22,5 @@ int main(int argc, char *argv[])
 
     return app.exec();
 }
+
+
