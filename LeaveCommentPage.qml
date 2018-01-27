@@ -20,6 +20,7 @@ Page {
     TextArea {
         id: commentInput
         width: parent.width - doneButton.width - margin * 3
+        text: comment
         height: parent.height / 2
         anchors.left: parent.left
         anchors.leftMargin: margin

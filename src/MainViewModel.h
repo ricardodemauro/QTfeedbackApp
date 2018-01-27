@@ -42,9 +42,6 @@ public:
 
     QString currentPage();
 
-    QString comment();
-    void setComment(QString &comment);
-
 	PAGE currentPageIndex();
     void setCurrentPageIndex(const PAGE &page);
 
@@ -57,8 +54,6 @@ signals:
     void currentPageChanged();
 
     void currentPageIndexChanged();
-
-    void commentChanged();
 
     void pageTimeout(int value);
 

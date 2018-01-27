@@ -57,7 +57,10 @@ ApplicationWindow {
             if(view.currentIndex == 2)
                 mainVM.onLoadThanksPageHandler()
             else if(view.currentIndex == 3)
+            {
                 mainVM.onLoadCommentPageHandler()
+                commentPage.comment = ""
+            }
         }
 
         ServicePage {

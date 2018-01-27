@@ -13,13 +13,14 @@ namespace Services
     class AppService
 	{
     public:
-        AppService();
+        AppService(QString connectionString);
 	public:
         void addService(FeedbackModel &model);
         void init();
 
     private:
         void save(const QUuid &id, const QDate &date, const QTime &time, FeedbackModel &model);
+        QString m_connectionString;
 	};
 }
 

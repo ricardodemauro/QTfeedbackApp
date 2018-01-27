@@ -5,7 +5,8 @@
 #include <QDebug>
 
 MainViewModel::MainViewModel(QObject *parent) :
-    QObject(parent)
+    QObject(parent),
+    m_appService(Constants::FILE_CSV)
 {
 
 }
@@ -19,7 +20,6 @@ void MainViewModel::initHandler()
 {
     //m_timer = new QTimer(this);
     //connect(m_timer, SIGNAL(timeout()), this, SLOT(timeElapsedSlot()));
-    m_appService.init();
 }
 
 void MainViewModel::quitHandler()
@@ -50,7 +50,7 @@ void MainViewModel::setFeedbackRateHandler(int feedbackId)
 
 void MainViewModel::onCommentChangedHandler(QString comment)
 {
-    setComment(comment);
+    m_feedbackModel.setComment(comment);
 }
 
 void MainViewModel::onLoadThanksPageHandler()
@@ -67,6 +67,9 @@ void MainViewModel::onLoadCommentPageHandler()
 void MainViewModel::onDoneButtonHandler()
 {
     m_appService.addService(m_feedbackModel);
+
+    QString emptyComment;
+    m_feedbackModel.setComment(emptyComment);
 
     gotoPage(Constants::Pages::Feedback);
 }
@@ -86,16 +89,6 @@ QString MainViewModel::currentPage()
     default:
         return "";
     }
-}
-
-QString MainViewModel::comment()
-{
-    return m_feedbackModel.comment();
-}
-
-void MainViewModel::setComment(QString &comment)
-{
-    m_feedbackModel.setComment(comment);
 }
 
 PAGE MainViewModel::currentPageIndex()
