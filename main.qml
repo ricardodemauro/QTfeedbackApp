@@ -17,6 +17,8 @@ ApplicationWindow {
         onCurrentPageChanged: view.currentIndex = mainVM.currentPageIndex
     }
 
+    Component.onCompleted: mainVM.initHandler()
+
     header: ToolBar {
         RowLayout {
             anchors.fill: parent
@@ -54,8 +56,12 @@ ApplicationWindow {
         id: view
         anchors.fill: parent
         onCurrentIndexChanged: {
-            if(view.currentIndex == 2)
+            if(view.currentIndex == 1) {
+                mainVM.onFeedbackPageHandler()
+            }
+            else if(view.currentIndex == 2) {
                 mainVM.onLoadThanksPageHandler()
+            }
             else if(view.currentIndex == 3)
             {
                 mainVM.onLoadCommentPageHandler()
@@ -82,7 +88,6 @@ ApplicationWindow {
             id: thanksPage
             title: qsTr("Thanks")
             onCommentClicked: mainVM.leaveCommentButtonHandler()
-            onLoaded: mainVM.onLoadThanksPageHandler()
         }
 
         LeaveCommentPage {

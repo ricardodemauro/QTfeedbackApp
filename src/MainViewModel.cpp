@@ -8,7 +8,7 @@ MainViewModel::MainViewModel(QObject *parent) :
     QObject(parent),
     m_appService(Constants::FILE_CSV)
 {
-
+    m_timer = new QTimer(this);
 }
 
 void MainViewModel::adminClickHandler()
@@ -18,8 +18,8 @@ void MainViewModel::adminClickHandler()
 
 void MainViewModel::initHandler()
 {
-    //m_timer = new QTimer(this);
-    //connect(m_timer, SIGNAL(timeout()), this, SLOT(timeElapsedSlot()));
+    connect(m_timer, SIGNAL(timeout()), this, SLOT(timeElapsedSlot()));
+    qDebug() << "slot connected";
 }
 
 void MainViewModel::quitHandler()
@@ -50,28 +50,33 @@ void MainViewModel::setFeedbackRateHandler(int feedbackId)
 
 void MainViewModel::onCommentChangedHandler(QString comment)
 {
+    qDebug() << "user typed in comment box, restarting timer";
     m_feedbackModel.setComment(comment);
+    restartTimer();
 }
 
 void MainViewModel::onLoadThanksPageHandler()
 {
-    qDebug() << "thanks page loaded";
-    //m_timer->start(Constants::TIMER_COUNTDOWN);
+    qDebug() << "thanks page loaded, starting timer";
+    restartTimer();
 }
 
 void MainViewModel::onLoadCommentPageHandler()
 {
-    qDebug() << "comment page loaded";
+    qDebug() << "comment page loaded, restarting timer";
+    restartTimer();
 }
 
 void MainViewModel::onDoneButtonHandler()
 {
-    m_appService.addService(m_feedbackModel);
+    qDebug() << "done button pressed, recording result";
+    save();
+}
 
-    QString emptyComment;
-    m_feedbackModel.setComment(emptyComment);
-
-    gotoPage(Constants::Pages::Feedback);
+void MainViewModel::onFeedbackPageHandler()
+{
+    qDebug() << "feedback page loaded, ending timer";
+    stopTimer();
 }
 
 QString MainViewModel::currentPage()
@@ -105,15 +110,16 @@ void MainViewModel::setCurrentPageIndex(const PAGE &page)
     m_currentPageIndex = pageIndex;
 }
 
-//MainViewModel::~MainViewModel()
-//{
-//    if(m_timer != nullptr)
-//        delete m_timer;
-//}
+MainViewModel::~MainViewModel()
+{
+    if(m_timer != nullptr)
+        delete m_timer;
+}
 
 void MainViewModel::timeElapsedSlot()
 {
-    qDebug() << "time elapsed ";
+    qDebug() << "time elapsed, recording result";
+    save();
 }
 
 void MainViewModel::gotoPage(const PAGE &pageIndex)
@@ -122,3 +128,26 @@ void MainViewModel::gotoPage(const PAGE &pageIndex)
     emit currentPageChanged();
 }
 
+void MainViewModel::restartTimer()
+{
+    m_timer->stop();
+    m_timer->start(Constants::TIMER_COUNTDOWN);
+    qDebug() << "timer restarted with elapsed time of " << Constants::TIMER_COUNTDOWN;
+}
+
+void MainViewModel::stopTimer()
+{
+    m_timer->stop();
+}
+
+void MainViewModel::save()
+{
+    stopTimer();
+
+    m_appService.addService(m_feedbackModel);
+
+    QString emptyComment;
+    m_feedbackModel.setComment(emptyComment);
+
+    gotoPage(Constants::Pages::Feedback);
+}

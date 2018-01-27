@@ -36,6 +36,8 @@ public:
 
     Q_INVOKABLE void onDoneButtonHandler();
 
+    Q_INVOKABLE void onFeedbackPageHandler();
+
     Q_INVOKABLE void onLoadThanksPageHandler();
 
     Q_INVOKABLE void onLoadCommentPageHandler();
@@ -45,7 +47,7 @@ public:
 	PAGE currentPageIndex();
     void setCurrentPageIndex(const PAGE &page);
 
-//    ~MainViewModel();
+    ~MainViewModel();
 
 public slots:
     void timeElapsedSlot();
@@ -64,9 +66,13 @@ private:
 
     Models::FeedbackModel m_feedbackModel;
 
-    //QTimer *m_timer;
+    QTimer *m_timer;
 
     void gotoPage(const PAGE &pageIndex);
+
+    void restartTimer();
+    void stopTimer();
+    void save();
 };
 
 #endif // MAINVIEWMODEL_H
