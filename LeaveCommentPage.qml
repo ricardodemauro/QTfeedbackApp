@@ -2,8 +2,14 @@ import QtQuick 2.9
 import QtQuick.Controls 2.2
 
 Page {
-    width: 600
-    height: 400
+    id: page
+
+    property double margin: 20
+
+    property alias comment: commentInput.text
+
+    signal commentTextChanged(string text)
+    signal doneClicked()
 
     header: Label {
         text: qsTr("Leave Comment Page")
@@ -11,8 +17,24 @@ Page {
         padding: 10
     }
 
-    Label {
-        text: qsTr("You are on Leave Comment Page.")
-        anchors.centerIn: parent
+    TextArea {
+        id: commentInput
+        width: parent.width - doneButton.width - margin * 3
+        height: parent.height / 2
+        anchors.left: parent.left
+        anchors.leftMargin: margin
+        anchors.topMargin: margin
+        anchors.top: parent.top
+        placeholderText: "Comment here"
+        onTextChanged: commentTextChanged(commentInput.text)
+    }
+
+    Button {
+        id: doneButton
+        text: qsTr("Done")
+        anchors.verticalCenter: commentInput.verticalCenter
+        anchors.rightMargin: margin
+        anchors.right: parent.right
+        onClicked: doneClicked()
     }
 }

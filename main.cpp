@@ -1,9 +1,7 @@
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
 
-#include <src/pagemainViewModel.h>
-#include <src/pageServiceViewModel.h>
-
+#include <src/MainViewModel.h>
 
 int main(int argc, char *argv[])
 {
@@ -13,14 +11,12 @@ int main(int argc, char *argv[])
 
     QGuiApplication app(argc, argv);
 
-    qmlRegisterType<PageMainViewModel>("feedbackapp.backend", 1, 0, "PageMainViewModel");
-    qmlRegisterType<PageServiceViewModel>("feedbackapp.backend", 1, 0, "PageServiceViewModel");
+    qmlRegisterType<MainViewModel>("feedbackapp.backend", 1, 0, "PageMainViewModel");
 
     QQmlApplicationEngine engine;
     engine.load(QUrl(QStringLiteral("qrc:/main.qml")));
     if (engine.rootObjects().isEmpty())
         return -1;
-
 
     return app.exec();
 }

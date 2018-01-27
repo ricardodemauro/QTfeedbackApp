@@ -10,15 +10,13 @@ Page {
     property double preferredWidthButton: 120
     property double preferredHeightButton: 180
 
-    function buttonClicked() {
-        console.info("button clicked")
-    }
+    signal feedbackSelected(real feedbackId)
+    signal adminClicked()
 
     header: Label {
-        text: "How likely are you to recommend..."
+        text: qsTr("How likely are you to recommend...")
         horizontalAlignment: Text.AlignHCenter
         font.pixelSize: Qt.application.font.pixelSize * 2
-
         padding: 10
     }
 
@@ -26,13 +24,11 @@ Page {
         id: footerRectangle
         width: parent.width
         height: 50
-        color: "white"
         transformOrigin: Item.Center
         anchors.horizontalCenter: parent.horizontalCenter
 
         Button {
-
-            onClicked: svcVM.startClickHandler()
+            onClicked: adminClicked()
             text: qsTr("Admin")
             anchors.left: parent.left
             anchors.leftMargin: 40
@@ -56,35 +52,40 @@ Page {
             source: "shared/images/emoji/extremely_likely.png"
             Layout.fillWidth: true
             Layout.preferredWidth: preferredWidthButton
+            onClicked: feedbackSelected(1)
         }
 
         ImageButton {
-            text: "Likely"
+            text: qsTr("Likely")
             Layout.preferredHeight: preferredHeightButton
             source: "shared/images/emoji/likely.png"
             Layout.fillWidth: true
             Layout.preferredWidth: preferredWidthButton
+            onClicked: feedbackSelected(2)
         }
         ImageButton {
-            text: "Likely"
+            text: qsTr("Likely")
             Layout.preferredHeight: preferredHeightButton
             source: "shared/images/emoji/likely.png"
             Layout.fillWidth: true
             Layout.preferredWidth: preferredWidthButton
+            onClicked: feedbackSelected(3)
         }
         ImageButton {
-            text: "Unlikely"
+            text: qsTr("Unlikely")
             Layout.preferredHeight: preferredHeightButton
             source: "shared/images/emoji/unlikely.png"
             Layout.fillWidth: true
             Layout.preferredWidth: preferredWidthButton
+            onClicked: feedbackSelected(4)
         }
         ImageButton {
-            text: "Extremely unlikely"
+            text: qsTr("Extremely unlikely")
             Layout.preferredHeight: preferredHeightButton
             source: "shared/images/emoji/extremely_unlikely.png"
             Layout.fillWidth: true
             Layout.preferredWidth: preferredWidthButton
+            onClicked: feedbackSelected(5)
         }
     }
 
@@ -95,5 +96,6 @@ Page {
         anchors.horizontalCenter: parent.horizontalCenter
         source: "shared/images/emoji/dont_know.png"
         height: preferredHeightButton * 0.75
+        onClicked: feedbackSelected(6)
     }
 }

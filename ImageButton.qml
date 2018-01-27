@@ -48,14 +48,7 @@ Item {
         hoverEnabled: true
         anchors.fill: button
         onClicked: { button.clicked();}
-        onPressed:
-        {
-            overlay.opacity = 0.2
-            console.info("onpressed " + overlay.opacity)
-        }
-        onReleased: {
-            overlay.opacity = 0
-            console.info("onReleased " + overlay.opacity)
-        }
+        onPressed: overlay.opacity = 0.2
+        onReleased: overlay.opacity = 0
     }
 }

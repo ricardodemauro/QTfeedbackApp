@@ -3,36 +3,23 @@
 
 #include <src/models/feedbackModel.h>
 #include <QTime>
+#include <QDate>
+#include <QUuid>
+
+using namespace Models;
 
 namespace Services
 {
     class AppService
 	{
-	public:
-        void save();
-
-        Models::FeedbackModel feedbackModel();
-
-        void setService(const QString &service);
-        void setFeedbackRate(const int &feedbackRate);
-        void setComment(const QString &comment);
-        void setTime(const QTime &time);
-
-        static AppService& getInstance()
-        {
-            static AppService instance;
-            return instance;
-        }
-	private:
-
-		/*private constructor for singleton service*/
+    public:
         AppService();
+	public:
+        void addService(FeedbackModel &model);
+        void init();
 
-        // Stop the compiler generating methods of copy the object
-        AppService(AppService const& copy);               // Not Implemented
-        AppService& operator =(AppService const& copy);   // Not Implemented
-
-        Models::FeedbackModel m_feedbackModel;
+    private:
+        void save(const QUuid &id, const QDate &date, const QTime &time, FeedbackModel &model);
 	};
 }
 

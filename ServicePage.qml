@@ -3,22 +3,34 @@ import QtQuick.Window 2.3
 
 import QtQuick.Controls 2.2
 
-import feedbackapp.backend 1.0
-
 Page {
     id: page
     visible: true
+    title: "Service"
 
-    PageServiceViewModel {
-        id: svcVM
-        selectedFeedback: 1
+    signal serviceSelected(string serviceId)
+    signal quitClicked()
+    signal startClicked()
+
+    property int selectedService: 0
+
+    Component.onCompleted: function() {
+        if(svc1.checked)
+            serviceSelected(svc1.text)
+        else if(svc2.checked)
+            serviceSelected(svc2.text)
+        else if(svc3.checked)
+            serviceSelected(svc3.text)
+        else if(svc4.checked)
+            serviceSelected(svc4.text)
+        else if(svc5.checked)
+            serviceSelected(svc5.text)
     }
 
     header: Label {
         text: "Please choose the service you'r running today:"
         horizontalAlignment: Text.AlignHCenter
         font.pixelSize: Qt.application.font.pixelSize * 2
-
         padding: 10
     }
 
@@ -26,23 +38,21 @@ Page {
         id: footerRectangle
         width: parent.width
         height: 80
-        color: "white"
         transformOrigin: Item.Center
         anchors.horizontalCenter: parent.horizontalCenter
 
         Button {
             anchors.horizontalCenterOffset: parent.width * -0.2
             anchors.horizontalCenter: parent.horizontalCenter
-
-            onClicked: svcVM.startClickHandler()
-            text: "Start"
+            onClicked: startClicked()
+            text: qsTr("Start")
             highlighted: true
         }
         Button {
             anchors.horizontalCenterOffset: parent.width * 0.2
             anchors.horizontalCenter: parent.horizontalCenter
-            onClicked: svcVM.quitClickHandler()
-            text: "Quit"
+            onClicked: quitClicked()
+            text: qsTr("Quit")
         }
     }
 
@@ -50,11 +60,11 @@ Page {
         anchors.centerIn: parent
         GroupBox {
             Column{
-                RadioButton { text: qsTr("Option 1"); checked: svcVM.selectedFeedback == 1; onClicked: function() { svcVM.selectedFeedback = 1 }; }
-                RadioButton { text: qsTr("Option 2"); checked: svcVM.selectedFeedback == 2; onClicked: function() { svcVM.selectedFeedback = 2 } }
-                RadioButton { text: qsTr("Option 3"); checked: svcVM.selectedFeedback == 3; onClicked: function() { svcVM.selectedFeedback = 3 } }
-                RadioButton { text: qsTr("Option 4"); checked: svcVM.selectedFeedback == 4; onClicked: function() { svcVM.selectedFeedback = 4 } }
-                RadioButton { text: qsTr("Option 5"); checked: svcVM.selectedFeedback == 5; onClicked: function() { svcVM.selectedFeedback = 5 } }
+                RadioButton { id: svc1; text: qsTr("Option 1"); checked: true; onClicked: serviceSelected(svc1.text); }
+                RadioButton { id: svc2; text: qsTr("Option 2"); onClicked: serviceSelected(svc2.text) }
+                RadioButton { id: svc3; text: qsTr("Option 3"); onClicked: serviceSelected(svc3.text) }
+                RadioButton { id: svc4; text: qsTr("Option 4"); onClicked: serviceSelected(svc4.text) }
+                RadioButton { id: svc5; text: qsTr("Option 5"); onClicked: serviceSelected(svc5.text) }
             }
         }
     }

@@ -1,53 +1,47 @@
 #include <src/services/appService.h>
-#include <src/services/logService.h>
 #include <src/thirdpart/csvfile.h>
-#include <src/constants.h>
+#include <QDebug>
 
 namespace Services {
-    void AppService::save()
+    void AppService::save(const QUuid &id, const QDate &date, const QTime &time, FeedbackModel &model)
     {
-        LogService::trace("saving model");
-        try
-        {
-            csvfile csv(Constants::FILE_CSV);
-            // header
-            csv << "X" << "VALUE"        << endrow;
-            // Data
-            csv <<  1  << "String value" << endrow;
-            csv <<  2  << 123            << endrow;
-            csv <<  3  << 1.f            << endrow;
-            csv <<  4  << 1.2            << endrow;
-        }
-        catch(const std::exception& ex)
-        {
-            LogService::trace("Error trying to save model");
-            LogService::trace(ex.what());
-        }
+        qDebug() << "saving model";
+//        try
+//        {
+//            csvfile csv(Constants::FILE_CSV);
+//            // header
+//            csv << "X" << "VALUE"        << endrow;
+//            // Data
+//            csv <<  1  << "String value" << endrow;
+//            csv <<  2  << 123            << endrow;
+//            csv <<  3  << 1.f            << endrow;
+//            csv <<  4  << 1.2            << endrow;
+//        }
+//        catch(const std::exception& ex)
+//        {
+//            qDebug() << "Error trying to save model";
+//            qDebug() << ex.what();
+//        }
+        qDebug() << id.toString() << "," << date.toString(Qt::DateFormat::ISODate) << time.toString(Qt::DateFormat::SystemLocaleLongDate) << ",";
+        qDebug() << model.service() << "," << model.feedbackRate() << "," << model.comment();
     }
 
-    Models::FeedbackModel AppService::feedbackModel()
+    AppService::AppService()
     {
-        return m_feedbackModel;
+
     }
 
-    void AppService::setService(const QString &service)
+    void AppService::addService(FeedbackModel &model)
     {
-        m_feedbackModel.setService(service);
+        QTime time = QTime::currentTime();
+        QDate date = QDate::currentDate();
+        QUuid id = QUuid::createUuid();
+        save(id, date, time, model);
     }
 
-    void AppService::setComment(const QString &comment)
+    void AppService::init()
     {
-        m_feedbackModel.setComment(comment);
-    }
 
-    void AppService::setFeedbackRate(const int &feedbackRate)
-    {
-        m_feedbackModel.setFeedbackRate(feedbackRate);
-    }
-
-    void AppService::setTime(const QTime &time)
-    {
-        m_feedbackModel.setTimestamp(time);
     }
 }
 

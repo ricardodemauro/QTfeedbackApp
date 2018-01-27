@@ -20,6 +20,8 @@ namespace Constants
 
     const int DEFAULT_SELECTED_FEEDBACK = 1;
 
+    const int TIMER_COUNTDOWN = 1000 * 4;
+
     enum Pages
     {
         Service = 0,
