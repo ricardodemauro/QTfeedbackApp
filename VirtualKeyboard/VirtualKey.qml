@@ -10,14 +10,14 @@ Button {
     text: "K"
 
 	property int key: Qt.Key_unknown
-	property int modifiers: Qt.NoModifier
 	property int repeatDelay: 600
 	property int repeatInterval: 40
+    property int evtTimeout: -1
 
     property bool disabled: false
 
-    signal keyClicked(int key, int modifiers, int timeout)
-    signal keyPressed(int key, int modifiers, int timeout)
+    signal keyClicked(string key, int timeout)
+    signal keyPressed(string key, int timeout)
 
 	focusPolicy: Qt.NoFocus
 	state: "normal"
@@ -60,40 +60,33 @@ Button {
 	}
 
 	function sendPress() {
-        console.info("sendPress disabled " + disabled + " key " + key + " text " + text)
         if(disabled) {
             return
         }
 
         if(key != Qt.Key_unknown) {
-            keyPressed(key, modifiers, -1)
+            keyPressed(key, evtTimeout)
         }
-
-		if (text) {
-            var keyPress = AppUtils.stringToQtKey(text);
-            keyPressed(keyPress, modifiers, -1)
+        else if (text) {
+            keyPressed(text, evtTimeout)
 		}
 	}
 
 	function sendRelease() {
-        console.info("sendRelease disabled " + disabled + " key " + key + " text " + text)
         if(disabled) {
             return
         }
-        console.log("sendRelease from " + control.text);
 	}
 
 	function sendClick() {
-        console.info("sendClick disabled " + disabled + " key " + key + " text " + text)
         if(disabled) {
             return
         }
         if(key != Qt.Key_unknown) {
-            keyPressed(key, modifiers, -1)
+            keyPressed(key, evtTimeout)
         }
-        if (text) {
-            var keyClick = AppUtils.stringToQtKey(text);
-            keyClicked(keyClick, modifiers, -1)
+        else if (text) {
+            keyClicked(text, evtTimeout)
         }
 	}
 

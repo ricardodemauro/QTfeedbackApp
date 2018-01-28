@@ -20,7 +20,7 @@ public:
     Q_INVOKABLE uint stringToQtKey(QString text)
     {
         const QString key = text;
-        QKeySequence sequence = QKeySequence(key);
+        QKeySequence sequence = QKeySequence::fromString(key);
         uint keyCode = sequence[0];
         return keyCode;
     }
@@ -30,6 +30,7 @@ static QObject *appUtilsSingletonProvider(QQmlEngine *engine, QJSEngine *scriptE
 {
     Q_UNUSED(engine)
     Q_UNUSED(scriptEngine)
+
 
     AppUtils *example = new AppUtils();
     return example;

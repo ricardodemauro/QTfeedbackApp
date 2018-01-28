@@ -40,7 +40,7 @@ Page {
             onTextChanged: commentTextChanged(commentInput.text)
 
             Keys.onPressed: {
-                console.log("Key onpressed " + event.key);
+                console.log("Key onpressed " + event.key + " A " + Qt.Key_A);
             }
         }
     }
