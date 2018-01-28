@@ -6,6 +6,7 @@
 #include <src/constants.h>
 #include <src/appUtils.h>
 
+
 int main(int argc, char *argv[])
 {
 #if defined(Q_OS_WIN)
@@ -24,6 +25,7 @@ int main(int argc, char *argv[])
 
     Services::AppService appSvc(Constants::FILE_CSV);
     appSvc.init();
+
 
     return app.exec();
 }

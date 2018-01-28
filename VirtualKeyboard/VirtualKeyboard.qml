@@ -6,6 +6,8 @@ import QtQuick.Window 2.3
 Item {
 	id: control
 
+    property color color: Qt.application.palette.color
+
 	property int keyWidth: Units.gu// / 2
 	property int keySpacing: Units.dp * 3
 
@@ -160,6 +162,7 @@ Item {
                 onKeyPressed: function(vk_clicked, vk_timeout) { onBackspacePressed(vk_timeout) }
                 onKeyClicked: function(vk_clicked, vk_timeout) { onBackspaceClicked(vk_timeout) }
                 text: " ← "
+                evtTimeout: -4
 				key: Qt.Key_Backspace
 
 				width: control.keyWidth * 2 + parent.spacing
@@ -171,18 +174,12 @@ Item {
 			anchors.horizontalCenter: parent.horizontalCenter
 			spacing: parent.spacing
 
-			VirtualKey {
-                onKeyPressed: function(vk_clicked, vk_timeout) { onVirtualKeyPressed(vk_clicked, vk_timeout) }
-                onKeyClicked: function(vk_clicked, vk_timeout) { onVirtualKeyClicked(vk_clicked, vk_timeout) }
-                text: ""
-                key: Qt.Key_unknown
-                disabled: true
+            Rectangle {
+                width: control.keyWidth
+                color: control.color
+            }
 
-				width: control.keyWidth
-				padding: 0
-			}
-
-			VirtualKey {
+            VirtualKey {
                 onKeyPressed: function(vk_clicked, vk_timeout) { onVirtualKeyPressed(vk_clicked, vk_timeout) }
                 onKeyClicked: function(vk_clicked, vk_timeout) { onVirtualKeyClicked(vk_clicked, vk_timeout) }
                 text: (control.modifiers & Qt.ShiftModifier)?"Q":"q"
@@ -272,17 +269,10 @@ Item {
                 font.capitalization: Font.MixedCase
 			}
 
-			VirtualKey {
-                onKeyPressed: function(vk_clicked, vk_timeout) { onVirtualKeyPressed(vk_clicked, vk_timeout) }
-                onKeyClicked: function(vk_clicked, vk_timeout) { onVirtualKeyClicked(vk_clicked, vk_timeout) }
-                text: ""
-                key: Qt.Key_unknown
-                disabled: true
-				width: control.keyWidth
-				checkable: true
-				padding: 0
-
-			}
+            Rectangle {
+                width: control.keyWidth
+                color: control.color
+            }
 		}
 
 		Row {
@@ -290,16 +280,10 @@ Item {
 			anchors.horizontalCenter: parent.horizontalCenter
 			spacing: parent.spacing
 
-			VirtualKey {
-                onKeyPressed: function(vk_clicked, vk_modifiers, vk_timeout) {  }
-                onKeyClicked: function(vk_clicked, vk_modifiers, vk_timeout) {  }
-                text: ""
-                key: Qt.Key_unknown
-
-				width: control.keyWidth
-				checkable: true
-				padding: 0
-			}
+            Rectangle {
+                width: control.keyWidth
+                color: parent.color
+            }
 
 			VirtualKey {
                 onKeyPressed: function(vk_clicked, vk_timeout) { onVirtualKeyPressed(vk_clicked, vk_timeout) }
