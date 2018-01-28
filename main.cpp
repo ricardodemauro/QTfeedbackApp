@@ -4,6 +4,7 @@
 #include <src/services/appService.h>
 #include <src/MainViewModel.h>
 #include <src/constants.h>
+#include <src/appUtils.h>
 
 int main(int argc, char *argv[])
 {
@@ -14,6 +15,7 @@ int main(int argc, char *argv[])
     QGuiApplication app(argc, argv);
 
     qmlRegisterType<MainViewModel>("feedbackapp.backend", 1, 0, "PageMainViewModel");
+    qmlRegisterSingletonType<AppUtils>("feedbackapp.static.utils", 1, 0, "AppUtils", appUtilsSingletonProvider);
 
     QQmlApplicationEngine engine;
     engine.load(QUrl(QStringLiteral("qrc:/main.qml")));

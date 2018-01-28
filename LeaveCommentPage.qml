@@ -1,7 +1,6 @@
 import QtQuick 2.7
 import QtQuick.Controls 2.2
 import QtQuick.Window 2.3
-
 import "VirtualKeyboard"
 
 Page {
@@ -39,6 +38,10 @@ Page {
             anchors.fill: parent
             placeholderText: "Comment here"
             onTextChanged: commentTextChanged(commentInput.text)
+
+            Keys.onPressed: {
+                console.log("Key onpressed " + event.key);
+            }
         }
     }
 

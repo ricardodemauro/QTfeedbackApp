@@ -1,5 +1,8 @@
 import QtQuick 2.7
 import QtQuick.Controls 2.0
+import QtQml 2.2
+import QtQuick.Controls.Styles 1.1
+import feedbackapp.static.utils 1.0
 
 Button {
 	id: control
@@ -11,8 +14,10 @@ Button {
 	property int repeatDelay: 600
 	property int repeatInterval: 40
 
-    signal keyClicked(string key)
-    signal keyPressed(string key)
+    property bool disabled: false
+
+    signal keyClicked(int key, int modifiers, int timeout)
+    signal keyPressed(int key, int modifiers, int timeout)
 
 	focusPolicy: Qt.NoFocus
 	state: "normal"
@@ -55,23 +60,40 @@ Button {
 	}
 
 	function sendPress() {
+        console.info("sendPress disabled " + disabled + " key " + key + " text " + text)
+        if(disabled) {
+            return
+        }
+
+        if(key != Qt.Key_unknown) {
+            keyPressed(key, modifiers, -1)
+        }
+
 		if (text) {
-            var t = text;
-            keyPressed(text)
+            var keyPress = AppUtils.stringToQtKey(text);
+            keyPressed(keyPress, modifiers, -1)
 		}
 	}
 
 	function sendRelease() {
-        //console.log("sendRelease from " + control.text);
+        console.info("sendRelease disabled " + disabled + " key " + key + " text " + text)
+        if(disabled) {
+            return
+        }
+        console.log("sendRelease from " + control.text);
 	}
 
 	function sendClick() {
-        //console.log("sendClick from " + control.text);
-
+        console.info("sendClick disabled " + disabled + " key " + key + " text " + text)
+        if(disabled) {
+            return
+        }
+        if(key != Qt.Key_unknown) {
+            keyPressed(key, modifiers, -1)
+        }
         if (text) {
-            //console.info("text not null -->" + text)
-            var t = text;
-            keyClicked(text)
+            var keyClick = AppUtils.stringToQtKey(text);
+            keyClicked(keyClick, modifiers, -1)
         }
 	}
 

@@ -54,8 +54,6 @@ Item  {
 		opacity: (vkeys.height-y)/height
 		clip: opacity > 0 && color.a > 0
 		color: Material.backgroundColor
-
-
 	}
 
 	NumberAnimation {

@@ -2,7 +2,6 @@
 #include <src/constants.h>
 #include <memory>
 #include <QCoreApplication>
-#include <QDebug>
 
 MainViewModel::MainViewModel(QObject *parent) :
     QObject(parent),
@@ -19,7 +18,6 @@ void MainViewModel::adminClickHandler()
 void MainViewModel::initHandler()
 {
     connect(m_timer, SIGNAL(timeout()), this, SLOT(timeElapsedSlot()));
-    qDebug() << "slot connected";
 }
 
 void MainViewModel::quitHandler()
@@ -50,32 +48,27 @@ void MainViewModel::setFeedbackRateHandler(int feedbackId)
 
 void MainViewModel::onCommentChangedHandler(QString comment)
 {
-    qDebug() << "user typed in comment box, restarting timer";
     m_feedbackModel.setComment(comment);
     restartTimer();
 }
 
 void MainViewModel::onLoadThanksPageHandler()
 {
-    qDebug() << "thanks page loaded, starting timer";
     restartTimer();
 }
 
 void MainViewModel::onLoadCommentPageHandler()
 {
-    qDebug() << "comment page loaded, restarting timer";
     restartTimer();
 }
 
 void MainViewModel::onDoneButtonHandler()
 {
-    qDebug() << "done button pressed, recording result";
     save();
 }
 
 void MainViewModel::onFeedbackPageHandler()
 {
-    qDebug() << "feedback page loaded, ending timer";
     stopTimer();
 }
 
@@ -118,7 +111,6 @@ MainViewModel::~MainViewModel()
 
 void MainViewModel::timeElapsedSlot()
 {
-    qDebug() << "time elapsed, recording result";
     save();
 }
 
@@ -132,7 +124,6 @@ void MainViewModel::restartTimer()
 {
     m_timer->stop();
     m_timer->start(Constants::TIMER_COUNTDOWN);
-    qDebug() << "timer restarted with elapsed time of " << Constants::TIMER_COUNTDOWN;
 }
 
 void MainViewModel::stopTimer()
