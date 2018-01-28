@@ -13,5 +13,8 @@
         <file>shared/images/emoji/likely.png</file>
         <file>shared/images/emoji/neither_likely_or_unlikely.png</file>
         <file>shared/images/emoji/unlikely.png</file>
+        <file>VirtualKeyboard/VirtualKey.qml</file>
+        <file>VirtualKeyboard/VirtualKeyboard.qml</file>
+        <file>VirtualKeyboard/VirtualKeys.qml</file>
     </qresource>
 </RCC>
