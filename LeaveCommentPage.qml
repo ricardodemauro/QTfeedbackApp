@@ -49,7 +49,7 @@ Page {
     Button {
         id: doneButton
         text: qsTr("Done")
-        anchors.verticalCenter: commentInput.verticalCenter
+        anchors.verticalCenter: root.verticalCenter
         anchors.rightMargin: margin
         anchors.right: parent.right
         onClicked: doneClicked()

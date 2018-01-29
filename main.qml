@@ -8,8 +8,8 @@ import feedbackapp.backend 1.0
 ApplicationWindow {
     id: applicationWindow
     visible: true
-    width: 640
-    height: 480
+    width: 1024
+    height: 768
     title: qsTr("AppName")
 
     PageMainViewModel {
@@ -26,6 +26,7 @@ ApplicationWindow {
                 text: "‹"
                 enabled: view.currentIndex > 0
                 onClicked: view.currentIndex--
+                visible: false
             }
             Label {
                 text: view.children[view.currentIndex].title
@@ -38,6 +39,7 @@ ApplicationWindow {
                 text: "›"
                 enabled: view.currentIndex + 1 < view.count
                 onClicked: view.currentIndex++
+                visible: false
             }
         }
     }

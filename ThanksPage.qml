@@ -8,12 +8,6 @@ Page {
     signal commentClicked()
     signal loaded()
 
-    header: Label {
-        text: qsTr("Thanks Page")
-        font.pixelSize: Qt.application.font.pixelSize * 2
-        padding: 10
-    }
-
     Component.onCompleted: loaded()
 
     Label {

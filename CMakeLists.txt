@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 2.8.12)
+cmake_minimum_required(VERSION 2.8.11)
 
 project(FeedbackApp LANGUAGES CXX)
 
@@ -6,7 +6,11 @@ set(CMAKE_INCLUDE_CURRENT_DIR ON)
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 
+set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -Wall")
+
 find_package(Qt5 COMPONENTS Core Quick REQUIRED)
+
+
 
 file(GLOB SOURCES
     src/*.h
@@ -24,4 +28,25 @@ add_executable(${PROJECT_NAME} ${SOURCES} "main.cpp" "qml.qrc")
 
 target_link_libraries(${PROJECT_NAME} Qt5::Core Qt5::Quick)
 
-install(TARGETS ${PROJECT_NAME} DESTINATION ${CMAKE_CURRENT_SOURCE_DIR}/bin)
+SET(CMAKE_INSTALL_PREFIX "${CMAKE_CURRENT_SOURCE_DIR}/bin")
+MESSAGE(STATUS "CMAKE_INSTALL_PREFIX: " ${CMAKE_INSTALL_PREFIX} )
+
+install(TARGETS ${PROJECT_NAME} DESTINATION ${CMAKE_INSTALL_PREFIX})
+install(FILES install/run.bat PERMISSIONS OWNER_EXECUTE OWNER_WRITE OWNER_READ DESTINATION ${CMAKE_INSTALL_PREFIX})
+
+find_program(TOOL_WINDEPLOYQT NAMES windeployqt PATHS "${CMAKE_PREFIX_PATH}/tools/qt5")
+find_program(TOOL_WINDEPLOYQT_DEBUG NAMES windeployqt PATHS "${CMAKE_PREFIX_PATH}/debug/tools/qt5")
+
+SET(QML_DIR "C:/Qt/5.10.0/msvc2017_64/qml")
+MESSAGE(STATUS "QML_DIR: " ${QML_DIR} )
+
+if(NOT TOOL_WINDEPLOYQT AND NOT TOOL_WINDEPLOYQT_DEBUG)
+    message(FATAL_ERROR "Could not find windeployqt")
+endif()
+
+#windeployqt --release --dir . --qmldir C:\Qt\5.10.0\msvc2017_64\qml FeedbackApp.exe
+
+SET(QT_INSTALL_CMD "${TOOL_WINDEPLOYQT} --release --qmldir ${QML_DIR} --dir ${CMAKE_INSTALL_PREFIX} ${CMAKE_INSTALL_PREFIX}/FeedbackApp.exe")
+MESSAGE(STATUS "QT_INSTALL_CMD " ${QT_INSTALL_CMD})
+
+add_custom_target(install_deps cmd "execute_process(COMMAND ${QT_INSTALL_CMD})")

@@ -5,7 +5,6 @@ import QtQuick.Controls 2.2
 
 Page {
     id: pageFeedback
-    visible: true
 
     property double preferredWidthButton: 120
     property double preferredHeightButton: 180
