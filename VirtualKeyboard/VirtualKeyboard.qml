@@ -1,4 +1,5 @@
 import QtQuick 2.7
+import QtQuick.Controls 2.2
 import "."
 import QtTest 1.0
 import QtQuick.Window 2.3
@@ -12,7 +13,7 @@ Item {
     property bool useLogicalPixelDensity: true
     property real multiplier: 1.0
 
-    property Item target: root
+    property TextArea target: root
 
     property int modifiers: shiftKey.checked ? Qt.ShiftModifier : Qt.NoModifier
 
@@ -23,66 +24,76 @@ Item {
 
     property int shiftModifier: shiftKey.checked ? Qt.ShiftModifier : Qt.NoModifier
 
-    property TestEvent evt: TestEvent { }
-
     function onSpacePressed(vk_timeout) {
         target.focus = true
-        evt.keyPress(Qt.Key_Space, Qt.NoModifier, vk_timeout)
+        target.text = target.text + " "
+        //evt.keyPress(Qt.Key_Space, Qt.NoModifier, vk_timeout)
     }
 
     function onSpaceClicked(vk_timeout) {
         target.focus = true
-        evt.keyClick(Qt.Key_Space, Qt.NoModifier, vk_timeout)
+        target.text = target.text + " "
+        //evt.keyClick(Qt.Key_Space, Qt.NoModifier, vk_timeout)
     }
 
     function onBackspacePressed(vk_timeout) {
         target.focus = true
-        evt.keyPress(Qt.Key_Backspace, Qt.NoModifier, vk_timeout)
+        target.text = target.text.substring(0, target.text.length - 1)
+        //evt.keyPress(Qt.Key_Backspace, Qt.NoModifier, vk_timeout)
     }
 
     function onBackspaceClicked(vk_timeout) {
         target.focus = true
-        evt.keyClick(Qt.Key_Backspace, Qt.NoModifier, vk_timeout)
+        target.text = target.text.substring(0, target.text.length - 1)
+        //evt.keyClick(Qt.Key_Backspace, Qt.NoModifier, vk_timeout)
     }
 
     function onEnterClicked(vk_timeout) {
         target.focus = true
-        evt.keyClick(Qt.Key_Return, Qt.NoModifier, vk_timeout)
+        target.text = target.text + "\n"
+        //evt.keyClick(Qt.Key_Return, Qt.NoModifier, vk_timeout)
     }
 
     function onEnterPressed(vk_timeout) {
         target.focus = true
-        evt.keyPress(Qt.Key_Return, Qt.NoModifier, vk_timeout)
+        target.text = target.text + "\n"
+        //evt.keyPress(Qt.Key_Return, Qt.NoModifier, vk_timeout)
     }
 
     function onCommaClicked(vk_timeout) {
         target.focus = true
-        evt.keyClick(Qt.Key_Comma, Qt.NoModifier, vk_timeout)
+        target.text = target.text + ","
+        //evt.keyClick(Qt.Key_Comma, Qt.NoModifier, vk_timeout)
     }
 
     function onCommaPressed(vk_timeout) {
         target.focus = true
-        evt.keyPress(Qt.Key_Comma, Qt.NoModifier, vk_timeout)
+        target.text = target.text + ","
+        //evt.keyPress(Qt.Key_Comma, Qt.NoModifier, vk_timeout)
     }
 
     function onPeriodClicked(vk_timeout) {
         target.focus = true
-        evt.keyClick(Qt.Key_Period, Qt.NoModifier, vk_timeout)
+        target.text = target.text + "."
+        //evt.keyClick(Qt.Key_Period, Qt.NoModifier, vk_timeout)
     }
 
     function onPeriodPressed(vk_timeout) {
         target.focus = true
-        evt.keyPress(Qt.Key_Period, Qt.NoModifier, vk_timeout)
+        target.text = target.text + "."
+        //evt.keyPress(Qt.Key_Period, Qt.NoModifier, vk_timeout)
     }
 
     function onVirtualKeyClicked(vk_clicked, vk_timeout) {
         target.focus = true
-        evt.keyClick(vk_clicked, Qt.NoModifier, vk_timeout)
+        target.text = target.text + vk_clicked
+        //evt.keyClick(vk_clicked, Qt.NoModifier, vk_timeout)
     }
 
     function onVirtualKeyPressed(vk_pressed, vk_timeout) {
         target.focus = true
-        evt.keyPressChar(vk_pressed, Qt.NoModifier, vk_timeout)
+        target.text = target.text + vk_pressed
+        //evt.keyPressChar(vk_pressed, Qt.NoModifier, vk_timeout)
     }
 
     Column {

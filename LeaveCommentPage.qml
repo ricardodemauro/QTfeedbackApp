@@ -13,7 +13,13 @@ Page {
     signal commentTextChanged(string text)
     signal doneClicked()
 
-    Component.onCompleted: commentInput.forceActiveFocus()
+    function loaded() {
+        //commentInput.forceActiveFocus()
+    }
+
+    Component.onCompleted: {
+        //commentInput.forceActiveFocus()
+    }
 
     FocusScope {
         id: root
@@ -53,6 +59,6 @@ Page {
         keyWidth: 64
         visible: true
         anchors.bottom: parent.bottom
-        target: page
+        target: commentInput
     }
 }

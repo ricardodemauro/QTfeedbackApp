@@ -72,6 +72,7 @@ ApplicationWindow {
             {
                 mainVM.onLoadCommentPageHandler()
                 commentPage.comment = ""
+                commentPage.loaded()
             }
         }
 
