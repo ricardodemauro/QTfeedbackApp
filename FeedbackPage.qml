@@ -66,9 +66,9 @@ Page {
             onClicked: feedbackSelected(2)
         }
         ImageButton {
-            text: qsTr("Likely")
+            text: qsTr("Neither likely nor\nunlikely")
             Layout.preferredHeight: preferredHeightButton
-            source: "shared/images/emoji/likely.png"
+            source: "shared/images/emoji/neither_likely_or_unlikely.png"
             Layout.fillWidth: true
             Layout.preferredWidth: preferredWidthButton
             onClicked: feedbackSelected(3)
