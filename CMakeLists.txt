@@ -37,16 +37,24 @@ install(FILES install/run.bat PERMISSIONS OWNER_EXECUTE OWNER_WRITE OWNER_READ D
 find_program(TOOL_WINDEPLOYQT NAMES windeployqt PATHS "${CMAKE_PREFIX_PATH}/tools/qt5")
 find_program(TOOL_WINDEPLOYQT_DEBUG NAMES windeployqt PATHS "${CMAKE_PREFIX_PATH}/debug/tools/qt5")
 
-SET(QML_DIR "C:/Qt/5.10.0/msvc2017_64/qml")
+STRING(REGEX REPLACE "bin/windeployqt.exe" "qml" QML_DIR ${TOOL_WINDEPLOYQT})
+#SET(QML_DIR "C:/Qt/5.10.0/msvc2017_64/qml")
 MESSAGE(STATUS "QML_DIR: " ${QML_DIR} )
 
 if(NOT TOOL_WINDEPLOYQT AND NOT TOOL_WINDEPLOYQT_DEBUG)
     message(FATAL_ERROR "Could not find windeployqt")
 endif()
 
-#windeployqt --release --dir . --qmldir C:\Qt\5.10.0\msvc2017_64\qml FeedbackApp.exe
-
-SET(QT_INSTALL_CMD "${TOOL_WINDEPLOYQT} --release --qmldir ${QML_DIR} --dir ${CMAKE_INSTALL_PREFIX} ${CMAKE_INSTALL_PREFIX}/FeedbackApp.exe")
-MESSAGE(STATUS "QT_INSTALL_CMD " ${QT_INSTALL_CMD})
-
-add_custom_target(install_deps cmd "execute_process(COMMAND ${QT_INSTALL_CMD})")
+install(CODE "
+        if(\${BUILD_TYPE} STREQUAL \"Debug\")
+        execute_process(
+                COMMAND ${TOOL_WINDEPLOYQT_DEBUG} \"\${CMAKE_INSTALL_PREFIX}/FeedbackApp.exe\" -verbose=2
+                WORKING_DIRECTORY ${CMAKE_PREFIX_PATH}/tools/qt5
+        )
+        else()
+                execute_process(
+                        COMMAND ${TOOL_WINDEPLOYQT} \"\${CMAKE_INSTALL_PREFIX}/FeedbackApp.exe\" -verbose=2 --release --qmldir ${QML_DIR}
+                        WORKING_DIRECTORY ${CMAKE_PREFIX_PATH}/debug/tools/qt5
+                )
+        endif()
+")
