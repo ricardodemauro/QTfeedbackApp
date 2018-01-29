@@ -23,6 +23,7 @@ ApplicationWindow {
     }
 
     header: ToolBar {
+        visible: Window.Hidden
         RowLayout {
             anchors.fill: parent
             ToolButton {

@@ -6,8 +6,6 @@ import QtQuick.Window 2.3
 Item {
     id: control
 
-    property color color: Qt.application.palette.color
-
     property int keyWidth: Units.gu// / 2
     property int keySpacing: Units.dp * 3
 

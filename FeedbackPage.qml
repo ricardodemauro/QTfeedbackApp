@@ -12,13 +12,6 @@ Page {
     signal feedbackSelected(real feedbackId)
     signal adminClicked()
 
-    header: Label {
-        text: qsTr("How likely are you to recommend...")
-        horizontalAlignment: Text.AlignHCenter
-        font.pixelSize: Qt.application.font.pixelSize * 2
-        padding: 10
-    }
-
     footer: Rectangle {
         id: footerRectangle
         width: parent.width
@@ -33,6 +26,16 @@ Page {
             anchors.leftMargin: 40
             anchors.verticalCenter: parent.verticalCenter
         }
+    }
+
+    Label {
+        id: labelTitle
+        text: qsTr("How likely are you to recommend...")
+        anchors.topMargin: parent.height * 0.1
+        anchors.top: parent.top
+        anchors.horizontalCenter: parent.horizontalCenter
+        horizontalAlignment: Text.AlignHCenter
+        font.pixelSize: Qt.application.font.pixelSize * 2
     }
 
     RowLayout {

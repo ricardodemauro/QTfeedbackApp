@@ -27,12 +27,6 @@ Page {
             serviceSelected(svc5.text)
     }
 
-    header: Label {
-        text: "Please choose the service you'r running today:"
-        horizontalAlignment: Text.AlignHCenter
-        font.pixelSize: Qt.application.font.pixelSize * 2
-        padding: 10
-    }
 
     footer: Rectangle {
         id: footerRectangle
@@ -67,5 +61,15 @@ Page {
                 RadioButton { id: svc5; text: qsTr("Option 5"); onClicked: serviceSelected(svc5.text) }
             }
         }
+    }
+
+    Label {
+        id: labelTitle
+        text: qsTr("Please choose the service you'r running today:")
+        anchors.topMargin: parent.height * 0.1
+        anchors.top: parent.top
+        anchors.horizontalCenter: parent.horizontalCenter
+        horizontalAlignment: Text.AlignHCenter
+        font.pixelSize: Qt.application.font.pixelSize * 2
     }
 }

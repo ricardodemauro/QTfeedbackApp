@@ -15,12 +15,6 @@ Page {
 
     Component.onCompleted: commentInput.forceActiveFocus()
 
-    header: Label {
-        text: qsTr("Leave Comment Page")
-        font.pixelSize: Qt.application.font.pixelSize * 2
-        padding: 10
-    }
-
     FocusScope {
         id: root
         width: parent.width - doneButton.width - margin * 3
@@ -38,10 +32,6 @@ Page {
             anchors.fill: parent
             placeholderText: "Comment here"
             onTextChanged: commentTextChanged(commentInput.text)
-
-            Keys.onPressed: {
-                console.log("Key onpressed " + event.key + " A " + Qt.Key_A);
-            }
         }
     }
 
