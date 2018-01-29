@@ -17,7 +17,10 @@ ApplicationWindow {
         onCurrentPageChanged: view.currentIndex = mainVM.currentPageIndex
     }
 
-    Component.onCompleted: mainVM.initHandler()
+    Component.onCompleted: {
+        applicationWindow.showFullScreen()
+        mainVM.initHandler()
+    }
 
     header: ToolBar {
         RowLayout {
