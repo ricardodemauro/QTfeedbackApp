@@ -1,6 +1,7 @@
 import QtQuick 2.0
 import QtGraphicalEffects 1.0
 import QtQuick.Controls.Material 2.3
+import feedbackapp.static.utils 1.0
 
 Item {
     id: button
@@ -10,6 +11,7 @@ Item {
     property alias source: backgroundImage.source
     property alias textSize: innerText.height
     property alias imageHeigth: backgroundImage.height
+    property alias fontSize: innerText.font.pixelSize
 
     signal clicked
     Image {
@@ -30,17 +32,15 @@ Item {
 
     Text {
         id: innerText
-        height: button.height * 0.2
-        color: "#000000"
-        text: "Neither likely nor\nunlikely"
+        height: button.height * 0.35
+        text: "Neither likely\nnor unlikely"
+        font.pointSize: 18
         anchors.right: parent.right
         anchors.left: parent.left
         anchors.bottom: parent.bottom
         verticalAlignment: Text.AlignVCenter
         horizontalAlignment: Text.AlignHCenter
         font.capitalization: Font.MixedCase
-        font.pixelSize: Qt.application.font.pixelSize
-        font.family: Qt.application.font.family
     }
 
     //Mouse area to react on click events

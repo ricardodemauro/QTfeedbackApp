@@ -1,9 +1,10 @@
 #include <src/appUtils.h>
 
 
-AppUtils::AppUtils(QObject *parent, int fontSize)
+AppUtils::AppUtils(QObject *parent, int fontSize, int secondaryFontSize)
     : QObject(parent),
-      m_appFontSize(fontSize)
+      m_appFontSize(fontSize),
+      m_appSecondaryFontSize(secondaryFontSize)
 {
 }
 
@@ -18,4 +19,9 @@ uint AppUtils::stringToQtKey(QString text)
 int AppUtils::FontSize()
 {
     return m_appFontSize;
+}
+
+int AppUtils::SecondaryFontSize()
+{
+    return m_appSecondaryFontSize;
 }

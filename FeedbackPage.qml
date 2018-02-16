@@ -17,8 +17,10 @@ Page {
         id: footerRectangle
         width: parent.width
         height: 50
+        color: "#00000000"
         transformOrigin: Item.Center
         anchors.horizontalCenter: parent.horizontalCenter
+
 
         Button {
             onClicked: adminClicked()
@@ -51,6 +53,7 @@ Page {
 
         ImageButton {
             text: qsTr("Extremely likely")
+            fontSize: AppUtils.SecondaryFontSize
             Layout.preferredHeight: preferredHeightButton
             source: "shared/images/emoji/extremely_likely.png"
             Layout.fillWidth: true
@@ -60,6 +63,7 @@ Page {
 
         ImageButton {
             text: qsTr("Likely")
+            fontSize: AppUtils.SecondaryFontSize
             Layout.preferredHeight: preferredHeightButton
             source: "shared/images/emoji/likely.png"
             Layout.fillWidth: true
@@ -67,7 +71,8 @@ Page {
             onClicked: feedbackSelected(2)
         }
         ImageButton {
-            text: qsTr("Neither likely nor\nunlikely")
+            text: "Neither likely\nnor unlikely"
+            fontSize: AppUtils.SecondaryFontSize
             Layout.preferredHeight: preferredHeightButton
             source: "shared/images/emoji/neither_likely_or_unlikely.png"
             Layout.fillWidth: true
@@ -81,6 +86,7 @@ Page {
             Layout.fillWidth: true
             Layout.preferredWidth: preferredWidthButton
             onClicked: feedbackSelected(4)
+            fontSize: AppUtils.SecondaryFontSize
         }
         ImageButton {
             text: qsTr("Extremely unlikely")
@@ -89,16 +95,18 @@ Page {
             Layout.fillWidth: true
             Layout.preferredWidth: preferredWidthButton
             onClicked: feedbackSelected(5)
+            fontSize: AppUtils.SecondaryFontSize
         }
     }
 
     ImageButton {
-        width: 193
+        width: 200
+        height: 180
         text: "Don't know"
         anchors.bottom: parent.bottom
         anchors.horizontalCenter: parent.horizontalCenter
         source: "shared/images/emoji/dont_know.png"
-        height: preferredHeightButton * 0.75
         onClicked: feedbackSelected(6)
+        fontSize: AppUtils.SecondaryFontSize
     }
 }
