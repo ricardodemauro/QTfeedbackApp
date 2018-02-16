@@ -12,7 +12,7 @@ Page {
 
     Label {
         id: labelTitle
-        text: qsTr("If you would like to leave a comment, click the\nbutton below.")
+        text: qsTr("What would have made your visit better?\nPress the button below to leave a comment.")
         anchors.topMargin: parent.height * 0.3
         anchors.top: parent.top
         anchors.horizontalCenter: parent.horizontalCenter
