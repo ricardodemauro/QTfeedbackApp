@@ -32,6 +32,7 @@ Page {
         id: footerRectangle
         width: parent.width
         height: 80
+        color: "#00000000"
         transformOrigin: Item.Center
         anchors.horizontalCenter: parent.horizontalCenter
 
