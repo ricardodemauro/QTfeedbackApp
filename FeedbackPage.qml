@@ -2,6 +2,7 @@ import QtQuick 2.9
 import QtQuick.Window 2.3
 import QtQuick.Layouts 1.3
 import QtQuick.Controls 2.2
+import feedbackapp.static.utils 1.0
 
 Page {
     id: pageFeedback
@@ -30,12 +31,12 @@ Page {
 
     Label {
         id: labelTitle
-        text: qsTr("How likely are you to recommend...")
+        text: "How likely are you to recommend our service to friends and\nfamily if they needed similar care or treatment?"
+        font.pointSize: AppUtils.FontSize
+        horizontalAlignment: Text.AlignHCenter
         anchors.topMargin: parent.height * 0.1
         anchors.top: parent.top
         anchors.horizontalCenter: parent.horizontalCenter
-        horizontalAlignment: Text.AlignHCenter
-        font.pixelSize: Qt.application.font.pixelSize * 2
     }
 
     RowLayout {

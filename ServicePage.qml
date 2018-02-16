@@ -1,6 +1,6 @@
 import QtQuick 2.9
 import QtQuick.Window 2.3
-
+import feedbackapp.static.utils 1.0
 import QtQuick.Controls 2.2
 
 Page {
@@ -70,6 +70,6 @@ Page {
         anchors.top: parent.top
         anchors.horizontalCenter: parent.horizontalCenter
         horizontalAlignment: Text.AlignHCenter
-        font.pixelSize: Qt.application.font.pixelSize * 2
+        font.pixelSize: AppUtils.FontSize
     }
 }

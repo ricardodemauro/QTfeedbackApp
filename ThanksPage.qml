@@ -1,5 +1,6 @@
 import QtQuick 2.9
 import QtQuick.Controls 2.2
+import feedbackapp.static.utils 1.0
 
 Page {
     id: pageThanks
@@ -17,7 +18,7 @@ Page {
         anchors.top: parent.top
         anchors.horizontalCenter: parent.horizontalCenter
         horizontalAlignment: Text.AlignHCenter
-        font.pixelSize: Qt.application.font.pixelSize * 2
+        font.pixelSize: AppUtils.FontSize
     }
 
     Button {
