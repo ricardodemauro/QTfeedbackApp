@@ -22,6 +22,8 @@ Page {
 
     Button {
         id: buttonLeaveComment
+        width: 268
+        height: 72
         text: qsTr("Leave a comnent")
         anchors.topMargin: parent.height * 0.6
         anchors.top: parent.top
