@@ -10,30 +10,23 @@ class AppUtils : public QObject
 {
     Q_OBJECT
 public:
-    AppUtils(QObject* parent = 0)
-        : QObject(parent)
-    {
-    }
+    AppUtils(QObject* parent = 0, int fontSize = 32);
 
     ~AppUtils() {}
 
-    Q_INVOKABLE uint stringToQtKey(QString text)
-    {
-        const QString key = text;
-        QKeySequence sequence = QKeySequence::fromString(key);
-        uint keyCode = sequence[0];
-        return keyCode;
-    }
+    Q_PROPERTY(int FontSize READ FontSize NOTIFY fontSizeChanged)
+
+    Q_INVOKABLE uint stringToQtKey(QString text);
+
+    int FontSize();
+
+signals:
+    void fontSizeChanged();
+
+private:
+    int m_appFontSize;
 };
 
-static QObject *appUtilsSingletonProvider(QQmlEngine *engine, QJSEngine *scriptEngine)
-{
-    Q_UNUSED(engine)
-    Q_UNUSED(scriptEngine)
 
-
-    AppUtils *example = new AppUtils();
-    return example;
-}
 
 #endif // APPUTILS_H

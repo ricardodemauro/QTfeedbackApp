@@ -6,6 +6,13 @@
 #include <src/constants.h>
 #include <src/appUtils.h>
 
+static QObject *appUtilsSingletonProvider(QQmlEngine *engine, QJSEngine *scriptEngine)
+{
+    Q_UNUSED(engine)
+    Q_UNUSED(scriptEngine)
+    AppUtils *appUtils = new AppUtils();
+    return appUtils;
+}
 
 int main(int argc, char *argv[])
 {
@@ -25,7 +32,6 @@ int main(int argc, char *argv[])
 
     Services::AppService appSvc(Constants::FILE_CSV);
     appSvc.init();
-
 
     return app.exec();
 }
