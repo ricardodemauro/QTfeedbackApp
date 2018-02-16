@@ -65,7 +65,7 @@ Page {
 
     Label {
         id: labelTitle
-        text: qsTr("Please choose the service you'r running today:")
+        text: qsTr("Please choose the service you're running today:")
         anchors.topMargin: parent.height * 0.1
         anchors.top: parent.top
         anchors.horizontalCenter: parent.horizontalCenter

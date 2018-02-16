@@ -30,6 +30,7 @@ target_link_libraries(${PROJECT_NAME} Qt5::Core Qt5::Quick)
 
 SET(CMAKE_INSTALL_PREFIX "${CMAKE_CURRENT_SOURCE_DIR}/bin")
 MESSAGE(STATUS "CMAKE_INSTALL_PREFIX: " ${CMAKE_INSTALL_PREFIX} )
+MESSAGE(STATUS "CMAKE_PREFIX_PATH: " ${CMAKE_PREFIX_PATH})
 
 install(TARGETS ${PROJECT_NAME} DESTINATION ${CMAKE_INSTALL_PREFIX})
 INSTALL(FILES ${CMAKE_INSTALL_SYSTEM_RUNTIME_LIBS} DESTINATION ${CMAKE_INSTALL_PREFIX} COMPONENT Libraries)
@@ -38,7 +39,9 @@ find_program(TOOL_WINDEPLOYQT NAMES windeployqt PATHS "${CMAKE_PREFIX_PATH}/tool
 find_program(TOOL_WINDEPLOYQT_DEBUG NAMES windeployqt PATHS "${CMAKE_PREFIX_PATH}/debug/tools/qt5")
 
 STRING(REGEX REPLACE "bin/windeployqt.exe" "qml" QML_DIR ${TOOL_WINDEPLOYQT})
-MESSAGE(STATUS "QML_DIR: " ${QML_DIR} )
+MESSAGE(STATUS "QML_DIR: " ${QML_DIR})
+MESSAGE(STATUS "CMAKE_PREFIX_PATH: " ${CMAKE_PREFIX_PATH})
+MESSAGE(STATUS "TOOL_WINDEPLOYQT_DEBUG: " ${TOOL_WINDEPLOYQT_DEBUG})
 
 if(NOT TOOL_WINDEPLOYQT AND NOT TOOL_WINDEPLOYQT_DEBUG)
     message(FATAL_ERROR "Could not find windeployqt")
@@ -46,15 +49,10 @@ endif()
 
 
 install(CODE "
-        if(\${BUILD_TYPE} STREQUAL \"Debug\")
+
         execute_process(
                 COMMAND ${TOOL_WINDEPLOYQT_DEBUG} \"\${CMAKE_INSTALL_PREFIX}/FeedbackApp.exe\" -verbose=2 --no-translations --release --force --qmldir ${QML_DIR}
                 WORKING_DIRECTORY ${CMAKE_PREFIX_PATH}/tools/qt5
         )
-        else()
-                execute_process(
-                        COMMAND ${TOOL_WINDEPLOYQT} \"\${CMAKE_INSTALL_PREFIX}/FeedbackApp.exe\" -verbose=2 --no-translations --release --force --qmldir ${QML_DIR}
-                        WORKING_DIRECTORY ${CMAKE_PREFIX_PATH}/debug/tools/qt5
-                )
-        endif()
+
 ")
