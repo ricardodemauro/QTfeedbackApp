@@ -50,16 +50,6 @@ ApplicationWindow {
         }
     }
 
-    footer: PageIndicator {
-        id: indicator
-
-        count: view.count
-        currentIndex: view.currentIndex
-
-        anchors.bottom: view.bottom
-        anchors.horizontalCenter: parent.horizontalCenter
-    }
-
     StackLayout {
         id: view
         anchors.fill: parent

@@ -7,7 +7,10 @@ import QtQuick.Window 2.3
 Item {
     id: control
 
-    property int keyWidth: Units.gu// / 2
+    property color backgroundColor: "#FFFFFF"
+
+    property int keyWidth: control.width / 12 //Units.gu// / 2
+    property int keyHeight: container.height / 4 //Units.gu// / 2
     property int keySpacing: Units.dp * 3
 
     property bool useLogicalPixelDensity: true
@@ -96,407 +99,458 @@ Item {
         //evt.keyPressChar(vk_pressed, Qt.NoModifier, vk_timeout)
     }
 
-    Column {
+    Rectangle {
+        id: container
+        width: parent.width
+        height: parent.height
+        color: parent.backgroundColor
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.verticalCenter: parent.verticalCenter
-        spacing: control.keySpacing
 
-        Row {
-            id: row0
+        Column {
+            height: container.height
+            anchors.verticalCenter: parent.verticalCenter
             anchors.horizontalCenter: parent.horizontalCenter
-            spacing: parent.spacing
+            spacing: control.keySpacing
 
-            VirtualKey {
-                onKeyClicked: function(vk_clicked, vk_timeout) { onVirtualKeyClicked(vk_clicked, vk_timeout) }
-                onKeyPressed: function(vk_clicked, vk_timeout) { onVirtualKeyPressed(vk_clicked, vk_timeout) }
-                text: (control.modifiers & Qt.ShiftModifier) ? "!":"1"
+            Row {
+                id: row0
+                height: control.keyHeight
+                anchors.horizontalCenter: parent.horizontalCenter
 
-                width: control.keyWidth
+                VirtualKey {
+                    onKeyClicked: function(vk_clicked, vk_timeout) { onVirtualKeyClicked(vk_clicked, vk_timeout) }
+                    onKeyPressed: function(vk_clicked, vk_timeout) { onVirtualKeyPressed(vk_clicked, vk_timeout) }
+                    text: (control.modifiers & Qt.ShiftModifier) ? "!":"1"
+
+                    width: control.keyWidth
+                    height: control.keyHeight
+                }
+
+                VirtualKey {
+                    onKeyPressed: function(vk_clicked, vk_timeout) { onVirtualKeyPressed(vk_clicked, vk_timeout) }
+                    onKeyClicked: function(vk_clicked, vk_timeout) { onVirtualKeyClicked(vk_clicked, vk_timeout) }
+                    text: (control.modifiers & Qt.ShiftModifier)?"@" : "2"
+
+                    width: control.keyWidth
+                    height: control.keyHeight
+                }
+
+                VirtualKey {
+                    onKeyPressed: function(vk_clicked, vk_timeout) { onVirtualKeyPressed(vk_clicked, vk_timeout) }
+                    onKeyClicked: function(vk_clicked, vk_timeout) { onVirtualKeyClicked(vk_clicked, vk_timeout) }
+                    text: (control.modifiers & Qt.ShiftModifier)?"#":"3"
+
+                    width: control.keyWidth
+                    height: control.keyHeight
+                }
+
+                VirtualKey {
+                    onKeyPressed: function(vk_clicked, vk_timeout) { onVirtualKeyPressed(vk_clicked, vk_timeout) }
+                    onKeyClicked: function(vk_clicked, vk_timeout) { onVirtualKeyClicked(vk_clicked, vk_timeout) }
+                    text: (control.modifiers & Qt.ShiftModifier)?"$":"4"
+
+                    width: control.keyWidth
+                    height: control.keyHeight
+                }
+
+                VirtualKey {
+                    onKeyPressed: function(vk_clicked, vk_timeout) { onVirtualKeyPressed(vk_clicked, vk_timeout) }
+                    onKeyClicked: function(vk_clicked, vk_timeout) { onVirtualKeyClicked(vk_clicked, vk_timeout) }
+                    text: (control.modifiers & Qt.ShiftModifier)?"%":"5"
+
+                    width: control.keyWidth
+                    height: control.keyHeight
+                }
+
+                VirtualKey {
+                    onKeyPressed: function(vk_clicked, vk_timeout) { onVirtualKeyPressed(vk_clicked, vk_timeout) }
+                    onKeyClicked: function(vk_clicked, vk_timeout) { onVirtualKeyClicked(vk_clicked, vk_timeout) }
+                    text: (control.modifiers & Qt.ShiftModifier)?"^":"6"
+
+                    width: control.keyWidth
+                    height: control.keyHeight
+                }
+
+                VirtualKey {
+                    onKeyPressed: function(vk_clicked, vk_timeout) { onVirtualKeyPressed(vk_clicked, vk_timeout) }
+                    onKeyClicked: function(vk_clicked, vk_timeout) { onVirtualKeyClicked(vk_clicked, vk_timeout) }
+                    text: (control.modifiers & Qt.ShiftModifier)?"&":"7"
+
+                    width: control.keyWidth
+                    height: control.keyHeight
+                }
+
+                VirtualKey {
+                    onKeyPressed: function(vk_clicked, vk_timeout) { onVirtualKeyPressed(vk_clicked, vk_timeout) }
+                    onKeyClicked: function(vk_clicked, vk_timeout) { onVirtualKeyClicked(vk_clicked, vk_timeout) }
+                    text: (control.modifiers & Qt.ShiftModifier)?"*":"8"
+
+                    width: control.keyWidth
+                    height: control.keyHeight
+                }
+
+                VirtualKey {
+                    onKeyPressed: function(vk_clicked, vk_timeout) { onVirtualKeyPressed(vk_clicked, vk_timeout) }
+                    onKeyClicked: function(vk_clicked, vk_timeout) { onVirtualKeyClicked(vk_clicked, vk_timeout) }
+                    text: (control.modifiers & Qt.ShiftModifier)?"(":"9"
+
+                    width: control.keyWidth
+                    height: control.keyHeight
+                }
+
+                VirtualKey {
+                    onKeyPressed: function(vk_clicked, vk_timeout) { onVirtualKeyPressed(vk_clicked, vk_timeout) }
+                    onKeyClicked: function(vk_clicked, vk_timeout) { onVirtualKeyClicked(vk_clicked, vk_timeout) }
+                    text: (control.modifiers & Qt.ShiftModifier) ? ")" : "0"
+
+                    width: control.keyWidth
+                    height: control.keyHeight
+                }
             }
 
-            VirtualKey {
-                onKeyPressed: function(vk_clicked, vk_timeout) { onVirtualKeyPressed(vk_clicked, vk_timeout) }
-                onKeyClicked: function(vk_clicked, vk_timeout) { onVirtualKeyClicked(vk_clicked, vk_timeout) }
-                text: (control.modifiers & Qt.ShiftModifier)?"@" : "2"
+            Row {
+                id: row1
+                height: control.keyHeight
+                anchors.horizontalCenter: parent.horizontalCenter
 
-                width: control.keyWidth
+                VirtualKey {
+                    onKeyPressed: function(vk_clicked, vk_timeout) { onVirtualKeyPressed(vk_clicked, vk_timeout) }
+                    onKeyClicked: function(vk_clicked, vk_timeout) { onVirtualKeyClicked(vk_clicked, vk_timeout) }
+                    text: (control.modifiers & Qt.ShiftModifier)?"Q":"q"
+
+                    width: control.keyWidth
+                    height: control.keyHeight
+                    font.capitalization: Font.MixedCase
+                }
+
+                VirtualKey {
+                    onKeyPressed: function(vk_clicked, vk_timeout) { onVirtualKeyPressed(vk_clicked, vk_timeout) }
+                    onKeyClicked: function(vk_clicked, vk_timeout) { onVirtualKeyClicked(vk_clicked, vk_timeout) }
+                    text: (control.modifiers & Qt.ShiftModifier)?"W":"w"
+
+                    width: control.keyWidth
+                    height: control.keyHeight
+                    font.capitalization: Font.MixedCase
+                }
+
+                VirtualKey {
+                    onKeyPressed: function(vk_clicked, vk_timeout) { onVirtualKeyPressed(vk_clicked, vk_timeout) }
+                    onKeyClicked: function(vk_clicked, vk_timeout) { onVirtualKeyClicked(vk_clicked, vk_timeout) }
+                    text: (control.modifiers & Qt.ShiftModifier)?"E":"e"
+
+                    width: control.keyWidth
+                    height: control.keyHeight
+                    font.capitalization: Font.MixedCase
+                }
+
+                VirtualKey {
+                    onKeyPressed: function(vk_clicked, vk_timeout) { onVirtualKeyPressed(vk_clicked, vk_timeout) }
+                    onKeyClicked: function(vk_clicked, vk_timeout) { onVirtualKeyClicked(vk_clicked, vk_timeout) }
+                    text: (control.modifiers & Qt.ShiftModifier)?"R":"r"
+                    width: control.keyWidth
+                    height: control.keyHeight
+                    font.capitalization: Font.MixedCase
+                }
+
+                VirtualKey {
+                    font.capitalization: Font.MixedCase
+                    onKeyPressed: function(vk_clicked, vk_timeout) { onVirtualKeyPressed(vk_clicked, vk_timeout) }
+                    onKeyClicked: function(vk_clicked, vk_timeout) { onVirtualKeyClicked(vk_clicked, vk_timeout) }
+                    text: (control.modifiers & Qt.ShiftModifier)?"T":"t"
+
+                    width: control.keyWidth
+                    height: control.keyHeight
+                }
+
+                VirtualKey {
+                    onKeyPressed: function(vk_clicked, vk_timeout) { onVirtualKeyPressed(vk_clicked, vk_timeout) }
+                    onKeyClicked: function(vk_clicked, vk_timeout) { onVirtualKeyClicked(vk_clicked, vk_timeout) }
+                    text: (control.modifiers & Qt.ShiftModifier)?"Y":"y"
+
+                    width: control.keyWidth
+                    height: control.keyHeight
+                    font.capitalization: Font.MixedCase
+                }
+
+                VirtualKey {
+                    onKeyPressed: function(vk_clicked, vk_timeout) { onVirtualKeyPressed(vk_clicked, vk_timeout) }
+                    onKeyClicked: function(vk_clicked, vk_timeout) { onVirtualKeyClicked(vk_clicked, vk_timeout) }
+                    text: (control.modifiers & Qt.ShiftModifier)?"U":"u"
+
+                    width: control.keyWidth
+                    height: control.keyHeight
+                    font.capitalization: Font.MixedCase
+                }
+
+                VirtualKey {
+                    onKeyPressed: function(vk_clicked, vk_timeout) { onVirtualKeyPressed(vk_clicked, vk_timeout) }
+                    onKeyClicked: function(vk_clicked, vk_timeout) { onVirtualKeyClicked(vk_clicked, vk_timeout) }
+                    text: (control.modifiers & Qt.ShiftModifier)?"I":"i"
+
+                    width: control.keyWidth
+                    height: control.keyHeight
+                    font.capitalization: Font.MixedCase
+                }
+
+                VirtualKey {
+                    onKeyPressed: function(vk_clicked, vk_timeout) { onVirtualKeyPressed(vk_clicked, vk_timeout) }
+                    onKeyClicked: function(vk_clicked, vk_timeout) { onVirtualKeyClicked(vk_clicked, vk_timeout) }
+                    text: (control.modifiers & Qt.ShiftModifier)?"O":"o"
+
+                    width: control.keyWidth
+                    height: control.keyHeight
+                    font.capitalization: Font.MixedCase
+                }
+
+                VirtualKey {
+                    onKeyPressed: function(vk_clicked, vk_timeout) { onVirtualKeyPressed(vk_clicked, vk_timeout) }
+                    onKeyClicked: function(vk_clicked, vk_timeout) { onVirtualKeyClicked(vk_clicked, vk_timeout) }
+                    text: (control.modifiers & Qt.ShiftModifier)?"P":"p"
+
+                    width: control.keyWidth
+                    height: control.keyHeight
+                    font.capitalization: Font.MixedCase
+                }
+
+                VirtualKey {
+                    id: backspaceKey
+                    onKeyPressed: function(vk_clicked, vk_timeout) { onBackspacePressed(vk_timeout) }
+                    onKeyClicked: function(vk_clicked, vk_timeout) { onBackspaceClicked(vk_timeout) }
+                    text: " ← "
+                    evtTimeout: -4
+                    key: Qt.Key_Backspace
+
+                    width: control.keyWidth
+                    height: control.keyHeight
+                }
             }
 
-            VirtualKey {
-                onKeyPressed: function(vk_clicked, vk_timeout) { onVirtualKeyPressed(vk_clicked, vk_timeout) }
-                onKeyClicked: function(vk_clicked, vk_timeout) { onVirtualKeyClicked(vk_clicked, vk_timeout) }
-                text: (control.modifiers & Qt.ShiftModifier)?"#":"3"
+            Row {
+                id: row2
+                height: control.keyHeight
+                anchors.horizontalCenter: parent.horizontalCenter
 
-                width: control.keyWidth
+                VirtualKey {
+                    onKeyPressed: function(vk_clicked, vk_timeout) { onVirtualKeyPressed(vk_clicked, vk_timeout) }
+                    onKeyClicked: function(vk_clicked, vk_timeout) { onVirtualKeyClicked(vk_clicked, vk_timeout) }
+                    text: (control.modifiers & Qt.ShiftModifier)?"A":"a"
+
+                    width: control.keyWidth
+                    height: control.keyHeight
+                    font.capitalization: Font.MixedCase
+                }
+
+                VirtualKey {
+                    onKeyPressed: function(vk_clicked, vk_timeout) { onVirtualKeyPressed(vk_clicked, vk_timeout) }
+                    onKeyClicked: function(vk_clicked, vk_timeout) { onVirtualKeyClicked(vk_clicked, vk_timeout) }
+                    text: (control.modifiers & Qt.ShiftModifier)?"S":"s"
+
+                    width: control.keyWidth
+                    height: control.keyHeight
+                    font.capitalization: Font.MixedCase
+                }
+
+                VirtualKey {
+                    onKeyPressed: function(vk_clicked, vk_timeout) { onVirtualKeyPressed(vk_clicked, vk_timeout) }
+                    onKeyClicked: function(vk_clicked, vk_timeout) { onVirtualKeyClicked(vk_clicked, vk_timeout) }
+                    text: (control.modifiers & Qt.ShiftModifier)?"D":"d"
+
+                    width: control.keyWidth
+                    height: control.keyHeight
+                    font.capitalization: Font.MixedCase
+                }
+
+                VirtualKey {
+                    onKeyPressed: function(vk_clicked, vk_timeout) { onVirtualKeyPressed(vk_clicked, vk_timeout) }
+                    onKeyClicked: function(vk_clicked, vk_timeout) { onVirtualKeyClicked(vk_clicked, vk_timeout) }
+                    text: (control.modifiers & Qt.ShiftModifier)?"F":"f"
+
+                    width: control.keyWidth
+                    height: control.keyHeight
+                    font.capitalization: Font.MixedCase
+                }
+
+                VirtualKey {
+                    onKeyPressed: function(vk_clicked, vk_timeout) { onVirtualKeyPressed(vk_clicked, vk_timeout) }
+                    onKeyClicked: function(vk_clicked, vk_timeout) { onVirtualKeyClicked(vk_clicked, vk_timeout) }
+                    text: (control.modifiers & Qt.ShiftModifier)?"G":"g"
+
+                    width: control.keyWidth
+                    height: control.keyHeight
+                    font.capitalization: Font.MixedCase
+                }
+
+                VirtualKey {
+                    onKeyPressed: function(vk_clicked, vk_timeout) { onVirtualKeyPressed(vk_clicked, vk_timeout) }
+                    onKeyClicked: function(vk_clicked, vk_timeout) { onVirtualKeyClicked(vk_clicked, vk_timeout) }
+                    text: (control.modifiers & Qt.ShiftModifier)?"H":"h"
+                    width: control.keyWidth
+
+                    font.capitalization: Font.MixedCase
+                    height: control.keyHeight
+                }
+
+                VirtualKey {
+                    onKeyPressed: function(vk_clicked, vk_timeout) { onVirtualKeyPressed(vk_clicked, vk_timeout) }
+                    onKeyClicked: function(vk_clicked, vk_timeout) { onVirtualKeyClicked(vk_clicked, vk_timeout) }
+                    text: (control.modifiers & Qt.ShiftModifier)?"J":"j"
+
+                    width: control.keyWidth
+                    height: control.keyHeight
+                    font.capitalization: Font.MixedCase
+                }
+
+                VirtualKey {
+                    onKeyPressed: function(vk_clicked, vk_timeout) { onVirtualKeyPressed(vk_clicked, vk_timeout) }
+                    onKeyClicked: function(vk_clicked, vk_timeout) { onVirtualKeyClicked(vk_clicked, vk_timeout) }
+                    text: (control.modifiers & Qt.ShiftModifier)?"K":"k"
+
+                    width: control.keyWidth
+                    height: control.keyHeight
+                    font.capitalization: Font.MixedCase
+                }
+
+                VirtualKey {
+                    onKeyPressed: function(vk_clicked, vk_timeout) { onVirtualKeyPressed(vk_clicked, vk_timeout) }
+                    onKeyClicked: function(vk_clicked, vk_timeout) { onVirtualKeyClicked(vk_clicked, vk_timeout) }
+                    text: (control.modifiers & Qt.ShiftModifier)?"L":"l"
+
+                    width: control.keyWidth
+                    height: control.keyHeight
+                    font.capitalization: Font.MixedCase
+                }
+
+                VirtualKey {
+                    id: returnKey
+                    onKeyPressed: function(vk_clicked, vk_timeout) { onEnterPressed(vk_timeout) }
+                    onKeyClicked: function(vk_clicked, vk_timeout) { onEnterClicked(vk_timeout) }
+                    text: "ENTER"
+                    key: Qt.Key_unknown
+                    disabled: false
+                    width: control.keyWidth * 1.5 + parent.spacing
+                    height: control.keyHeight
+                    padding: 0
+                }
+
             }
 
-            VirtualKey {
-                onKeyPressed: function(vk_clicked, vk_timeout) { onVirtualKeyPressed(vk_clicked, vk_timeout) }
-                onKeyClicked: function(vk_clicked, vk_timeout) { onVirtualKeyClicked(vk_clicked, vk_timeout) }
-                text: (control.modifiers & Qt.ShiftModifier)?"$":"4"
+            Row {
+                id: row3
+                height: control.keyHeight
+                anchors.horizontalCenter: parent.horizontalCenter
 
-                width: control.keyWidth
+                VirtualKey {
+                    id: shiftKey
+                    text: "SHIFT"
+                    checkable: true
+                    key: Qt.Key_unknown
+                    width: control.keyWidth
+                    font.capitalization: Font.MixedCase
+                    height: control.keyHeight
+                }
+
+                VirtualKey {
+                    onKeyPressed: function(vk_clicked, vk_timeout) { onVirtualKeyPressed(vk_clicked, vk_timeout) }
+                    onKeyClicked: function(vk_clicked, vk_timeout) { onVirtualKeyClicked(vk_clicked, vk_timeout) }
+                    text: (control.modifiers & Qt.ShiftModifier) ? "Z" : "z"
+                    width: control.keyWidth
+                    font.capitalization: Font.MixedCase
+                    height: control.keyHeight
+                }
+
+                VirtualKey {
+                    onKeyPressed: function(vk_clicked, vk_timeout) { onVirtualKeyPressed(vk_clicked, vk_timeout) }
+                    onKeyClicked: function(vk_clicked, vk_timeout) { onVirtualKeyClicked(vk_clicked, vk_timeout) }
+                    text: (control.modifiers & Qt.ShiftModifier)?"X":"x"
+
+                    width: control.keyWidth
+                    height: control.keyHeight
+                    font.capitalization: Font.MixedCase
+                }
+
+                VirtualKey {
+                    onKeyPressed: function(vk_clicked, vk_timeout) { onVirtualKeyPressed(vk_clicked, vk_timeout) }
+                    onKeyClicked: function(vk_clicked, vk_timeout) { onVirtualKeyClicked(vk_clicked, vk_timeout) }
+                    text: (control.modifiers & Qt.ShiftModifier)?"C":"c"
+
+                    width: control.keyWidth
+                    height: control.keyHeight
+                    font.capitalization: Font.MixedCase
+                }
+
+                VirtualKey {
+                    onKeyPressed: function(vk_clicked, vk_timeout) { onVirtualKeyPressed(vk_clicked, vk_timeout) }
+                    onKeyClicked: function(vk_clicked, vk_timeout) { onVirtualKeyClicked(vk_clicked, vk_timeout) }
+                    text: (control.modifiers & Qt.ShiftModifier)?"V":"v"
+
+                    width: control.keyWidth
+                    height: control.keyHeight
+                    font.capitalization: Font.MixedCase
+                }
+
+                VirtualKey {
+                    onKeyPressed: function(vk_clicked, vk_timeout) { onVirtualKeyPressed(vk_clicked, vk_timeout) }
+                    onKeyClicked: function(vk_clicked, vk_timeout) { onVirtualKeyClicked(vk_clicked, vk_timeout) }
+                    text: (control.modifiers & Qt.ShiftModifier)?"B":"b"
+
+                    width: control.keyWidth
+                    height: control.keyHeight
+                    font.capitalization: Font.MixedCase
+                }
+
+                VirtualKey {
+                    onKeyPressed: function(vk_clicked, vk_timeout) { onVirtualKeyPressed(vk_clicked, vk_timeout) }
+                    onKeyClicked: function(vk_clicked, vk_timeout) { onVirtualKeyClicked(vk_clicked, vk_timeout) }
+                    text: (control.modifiers & Qt.ShiftModifier)?"N":"n"
+
+                    width: control.keyWidth
+                    height: control.keyHeight
+                    font.capitalization: Font.MixedCase
+                }
+
+                VirtualKey {
+                    onKeyPressed: function(vk_clicked, vk_timeout) { onVirtualKeyPressed(vk_clicked, vk_timeout) }
+                    onKeyClicked: function(vk_clicked, vk_timeout) { onVirtualKeyClicked(vk_clicked, vk_timeout) }
+                    text: (control.modifiers & Qt.ShiftModifier)?"M":"m"
+
+                    width: control.keyWidth
+                    height: control.keyHeight
+                    font.capitalization: Font.MixedCase
+                }
+
+                VirtualKey {
+                    onKeyPressed: function(vk_clicked, vk_timeout) { onCommaPressed(vk_timeout) }
+                    onKeyClicked: function(vk_clicked, vk_timeout) { onCommaClicked(vk_timeout) }
+                    text: ","
+                    key: Qt.Key_Comma
+                    width: control.keyWidth
+                    height: control.keyHeight
+                    font.capitalization: Font.MixedCase
+                }
+
+                VirtualKey {
+                    onKeyPressed: function(vk_clicked, vk_timeout) { onPeriodPressed(vk_timeout) }
+                    onKeyClicked: function(vk_clicked, vk_timeout) { onPeriodClicked(vk_timeout) }
+                    text: "."
+                    key: Qt.Key_Period
+                    width: control.keyWidth
+                    height: control.keyHeight
+                    font.capitalization: Font.MixedCase
+                }
+
+                VirtualKey {
+                    id: spaceKey
+                    onKeyPressed: function(vk_clicked, vk_timeout) { onSpacePressed(vk_timeout) }
+                    onKeyClicked: function(vk_clicked, vk_timeout) { onSpaceClicked(vk_timeout) }
+                    text: " SPACE "
+                    key: Qt.Key_Space
+                    width: control.keyWidth
+                    height: control.keyHeight
+                    font.capitalization: Font.MixedCase
+                }
+
             }
-
-            VirtualKey {
-                onKeyPressed: function(vk_clicked, vk_timeout) { onVirtualKeyPressed(vk_clicked, vk_timeout) }
-                onKeyClicked: function(vk_clicked, vk_timeout) { onVirtualKeyClicked(vk_clicked, vk_timeout) }
-                text: (control.modifiers & Qt.ShiftModifier)?"%":"5"
-
-                width: control.keyWidth
-            }
-
-            VirtualKey {
-                onKeyPressed: function(vk_clicked, vk_timeout) { onVirtualKeyPressed(vk_clicked, vk_timeout) }
-                onKeyClicked: function(vk_clicked, vk_timeout) { onVirtualKeyClicked(vk_clicked, vk_timeout) }
-                text: (control.modifiers & Qt.ShiftModifier)?"^":"6"
-
-                width: control.keyWidth
-            }
-
-            VirtualKey {
-                onKeyPressed: function(vk_clicked, vk_timeout) { onVirtualKeyPressed(vk_clicked, vk_timeout) }
-                onKeyClicked: function(vk_clicked, vk_timeout) { onVirtualKeyClicked(vk_clicked, vk_timeout) }
-                text: (control.modifiers & Qt.ShiftModifier)?"&":"7"
-
-                width: control.keyWidth
-            }
-
-            VirtualKey {
-                onKeyPressed: function(vk_clicked, vk_timeout) { onVirtualKeyPressed(vk_clicked, vk_timeout) }
-                onKeyClicked: function(vk_clicked, vk_timeout) { onVirtualKeyClicked(vk_clicked, vk_timeout) }
-                text: (control.modifiers & Qt.ShiftModifier)?"*":"8"
-
-                width: control.keyWidth
-            }
-
-            VirtualKey {
-                onKeyPressed: function(vk_clicked, vk_timeout) { onVirtualKeyPressed(vk_clicked, vk_timeout) }
-                onKeyClicked: function(vk_clicked, vk_timeout) { onVirtualKeyClicked(vk_clicked, vk_timeout) }
-                text: (control.modifiers & Qt.ShiftModifier)?"(":"9"
-
-                width: control.keyWidth
-            }
-
-            VirtualKey {
-                onKeyPressed: function(vk_clicked, vk_timeout) { onVirtualKeyPressed(vk_clicked, vk_timeout) }
-                onKeyClicked: function(vk_clicked, vk_timeout) { onVirtualKeyClicked(vk_clicked, vk_timeout) }
-                text: (control.modifiers & Qt.ShiftModifier) ? ")" : "0"
-
-                width: control.keyWidth
-            }
-        }
-
-        Row {
-            id: row1
-            anchors.horizontalCenter: parent.horizontalCenter
-            spacing: parent.spacing
-
-            VirtualKey {
-                onKeyPressed: function(vk_clicked, vk_timeout) { onVirtualKeyPressed(vk_clicked, vk_timeout) }
-                onKeyClicked: function(vk_clicked, vk_timeout) { onVirtualKeyClicked(vk_clicked, vk_timeout) }
-                text: (control.modifiers & Qt.ShiftModifier)?"Q":"q"
-
-                width: control.keyWidth
-                font.capitalization: Font.MixedCase
-            }
-
-            VirtualKey {
-                onKeyPressed: function(vk_clicked, vk_timeout) { onVirtualKeyPressed(vk_clicked, vk_timeout) }
-                onKeyClicked: function(vk_clicked, vk_timeout) { onVirtualKeyClicked(vk_clicked, vk_timeout) }
-                text: (control.modifiers & Qt.ShiftModifier)?"W":"w"
-
-                width: control.keyWidth
-                font.capitalization: Font.MixedCase
-            }
-
-            VirtualKey {
-                onKeyPressed: function(vk_clicked, vk_timeout) { onVirtualKeyPressed(vk_clicked, vk_timeout) }
-                onKeyClicked: function(vk_clicked, vk_timeout) { onVirtualKeyClicked(vk_clicked, vk_timeout) }
-                text: (control.modifiers & Qt.ShiftModifier)?"E":"e"
-
-                width: control.keyWidth
-                font.capitalization: Font.MixedCase
-            }
-
-            VirtualKey {
-                onKeyPressed: function(vk_clicked, vk_timeout) { onVirtualKeyPressed(vk_clicked, vk_timeout) }
-                onKeyClicked: function(vk_clicked, vk_timeout) { onVirtualKeyClicked(vk_clicked, vk_timeout) }
-                text: (control.modifiers & Qt.ShiftModifier)?"R":"r"
-                width: control.keyWidth
-
-                font.capitalization: Font.MixedCase
-            }
-
-            VirtualKey {
-                font.capitalization: Font.MixedCase
-                onKeyPressed: function(vk_clicked, vk_timeout) { onVirtualKeyPressed(vk_clicked, vk_timeout) }
-                onKeyClicked: function(vk_clicked, vk_timeout) { onVirtualKeyClicked(vk_clicked, vk_timeout) }
-                text: (control.modifiers & Qt.ShiftModifier)?"T":"t"
-
-                width: control.keyWidth
-            }
-
-            VirtualKey {
-                onKeyPressed: function(vk_clicked, vk_timeout) { onVirtualKeyPressed(vk_clicked, vk_timeout) }
-                onKeyClicked: function(vk_clicked, vk_timeout) { onVirtualKeyClicked(vk_clicked, vk_timeout) }
-                text: (control.modifiers & Qt.ShiftModifier)?"Y":"y"
-
-                width: control.keyWidth
-                font.capitalization: Font.MixedCase
-            }
-
-            VirtualKey {
-                onKeyPressed: function(vk_clicked, vk_timeout) { onVirtualKeyPressed(vk_clicked, vk_timeout) }
-                onKeyClicked: function(vk_clicked, vk_timeout) { onVirtualKeyClicked(vk_clicked, vk_timeout) }
-                text: (control.modifiers & Qt.ShiftModifier)?"U":"u"
-
-                width: control.keyWidth
-                font.capitalization: Font.MixedCase
-            }
-
-            VirtualKey {
-                onKeyPressed: function(vk_clicked, vk_timeout) { onVirtualKeyPressed(vk_clicked, vk_timeout) }
-                onKeyClicked: function(vk_clicked, vk_timeout) { onVirtualKeyClicked(vk_clicked, vk_timeout) }
-                text: (control.modifiers & Qt.ShiftModifier)?"I":"i"
-
-                width: control.keyWidth
-                font.capitalization: Font.MixedCase
-            }
-
-            VirtualKey {
-                onKeyPressed: function(vk_clicked, vk_timeout) { onVirtualKeyPressed(vk_clicked, vk_timeout) }
-                onKeyClicked: function(vk_clicked, vk_timeout) { onVirtualKeyClicked(vk_clicked, vk_timeout) }
-                text: (control.modifiers & Qt.ShiftModifier)?"O":"o"
-
-                width: control.keyWidth
-                font.capitalization: Font.MixedCase
-            }
-
-            VirtualKey {
-                onKeyPressed: function(vk_clicked, vk_timeout) { onVirtualKeyPressed(vk_clicked, vk_timeout) }
-                onKeyClicked: function(vk_clicked, vk_timeout) { onVirtualKeyClicked(vk_clicked, vk_timeout) }
-                text: (control.modifiers & Qt.ShiftModifier)?"P":"p"
-
-                width: control.keyWidth
-                font.capitalization: Font.MixedCase
-            }
-
-            VirtualKey {
-                id: backspaceKey
-                onKeyPressed: function(vk_clicked, vk_timeout) { onBackspacePressed(vk_timeout) }
-                onKeyClicked: function(vk_clicked, vk_timeout) { onBackspaceClicked(vk_timeout) }
-                text: " ← "
-                evtTimeout: -4
-                key: Qt.Key_Backspace
-
-                width: control.keyWidth
-            }
-        }
-
-        Row {
-            id: row2
-            anchors.horizontalCenter: parent.horizontalCenter
-            spacing: parent.spacing
-
-            VirtualKey {
-                onKeyPressed: function(vk_clicked, vk_timeout) { onVirtualKeyPressed(vk_clicked, vk_timeout) }
-                onKeyClicked: function(vk_clicked, vk_timeout) { onVirtualKeyClicked(vk_clicked, vk_timeout) }
-                text: (control.modifiers & Qt.ShiftModifier)?"A":"a"
-
-                width: control.keyWidth
-                font.capitalization: Font.MixedCase
-            }
-
-            VirtualKey {
-                onKeyPressed: function(vk_clicked, vk_timeout) { onVirtualKeyPressed(vk_clicked, vk_timeout) }
-                onKeyClicked: function(vk_clicked, vk_timeout) { onVirtualKeyClicked(vk_clicked, vk_timeout) }
-                text: (control.modifiers & Qt.ShiftModifier)?"S":"s"
-
-                width: control.keyWidth
-                font.capitalization: Font.MixedCase
-            }
-
-            VirtualKey {
-                onKeyPressed: function(vk_clicked, vk_timeout) { onVirtualKeyPressed(vk_clicked, vk_timeout) }
-                onKeyClicked: function(vk_clicked, vk_timeout) { onVirtualKeyClicked(vk_clicked, vk_timeout) }
-                text: (control.modifiers & Qt.ShiftModifier)?"D":"d"
-
-                width: control.keyWidth
-                font.capitalization: Font.MixedCase
-            }
-
-            VirtualKey {
-                onKeyPressed: function(vk_clicked, vk_timeout) { onVirtualKeyPressed(vk_clicked, vk_timeout) }
-                onKeyClicked: function(vk_clicked, vk_timeout) { onVirtualKeyClicked(vk_clicked, vk_timeout) }
-                text: (control.modifiers & Qt.ShiftModifier)?"F":"f"
-
-                width: control.keyWidth
-                font.capitalization: Font.MixedCase
-            }
-
-            VirtualKey {
-                onKeyPressed: function(vk_clicked, vk_timeout) { onVirtualKeyPressed(vk_clicked, vk_timeout) }
-                onKeyClicked: function(vk_clicked, vk_timeout) { onVirtualKeyClicked(vk_clicked, vk_timeout) }
-                text: (control.modifiers & Qt.ShiftModifier)?"G":"g"
-
-                width: control.keyWidth
-                font.capitalization: Font.MixedCase
-            }
-
-            VirtualKey {
-                onKeyPressed: function(vk_clicked, vk_timeout) { onVirtualKeyPressed(vk_clicked, vk_timeout) }
-                onKeyClicked: function(vk_clicked, vk_timeout) { onVirtualKeyClicked(vk_clicked, vk_timeout) }
-                text: (control.modifiers & Qt.ShiftModifier)?"H":"h"
-                width: control.keyWidth
-
-                font.capitalization: Font.MixedCase
-            }
-
-            VirtualKey {
-                onKeyPressed: function(vk_clicked, vk_timeout) { onVirtualKeyPressed(vk_clicked, vk_timeout) }
-                onKeyClicked: function(vk_clicked, vk_timeout) { onVirtualKeyClicked(vk_clicked, vk_timeout) }
-                text: (control.modifiers & Qt.ShiftModifier)?"J":"j"
-
-                width: control.keyWidth
-                font.capitalization: Font.MixedCase
-            }
-
-            VirtualKey {
-                onKeyPressed: function(vk_clicked, vk_timeout) { onVirtualKeyPressed(vk_clicked, vk_timeout) }
-                onKeyClicked: function(vk_clicked, vk_timeout) { onVirtualKeyClicked(vk_clicked, vk_timeout) }
-                text: (control.modifiers & Qt.ShiftModifier)?"K":"k"
-
-                width: control.keyWidth
-                font.capitalization: Font.MixedCase
-            }
-
-            VirtualKey {
-                onKeyPressed: function(vk_clicked, vk_timeout) { onVirtualKeyPressed(vk_clicked, vk_timeout) }
-                onKeyClicked: function(vk_clicked, vk_timeout) { onVirtualKeyClicked(vk_clicked, vk_timeout) }
-                text: (control.modifiers & Qt.ShiftModifier)?"L":"l"
-
-                width: control.keyWidth
-                font.capitalization: Font.MixedCase
-            }
-
-            VirtualKey {
-                id: returnKey
-                onKeyPressed: function(vk_clicked, vk_timeout) { onEnterPressed(vk_timeout) }
-                onKeyClicked: function(vk_clicked, vk_timeout) { onEnterClicked(vk_timeout) }
-                text: "ENTER"
-                key: Qt.Key_unknown
-                disabled: false
-                width: control.keyWidth * 1.5 + parent.spacing
-                padding: 0
-            }
-
-        }
-
-        Row {
-            id: row3
-            anchors.horizontalCenter: parent.horizontalCenter
-            spacing: parent.spacing
-
-            VirtualKey {
-                id: shiftKey
-                text: "SHIFT"
-                checkable: true
-                key: Qt.Key_unknown
-                width: control.keyWidth
-                font.capitalization: Font.MixedCase
-            }
-
-            VirtualKey {
-                onKeyPressed: function(vk_clicked, vk_timeout) { onVirtualKeyPressed(vk_clicked, vk_timeout) }
-                onKeyClicked: function(vk_clicked, vk_timeout) { onVirtualKeyClicked(vk_clicked, vk_timeout) }
-                text: (control.modifiers & Qt.ShiftModifier) ? "Z" : "z"
-                width: control.keyWidth
-                font.capitalization: Font.MixedCase
-            }
-
-            VirtualKey {
-                onKeyPressed: function(vk_clicked, vk_timeout) { onVirtualKeyPressed(vk_clicked, vk_timeout) }
-                onKeyClicked: function(vk_clicked, vk_timeout) { onVirtualKeyClicked(vk_clicked, vk_timeout) }
-                text: (control.modifiers & Qt.ShiftModifier)?"X":"x"
-
-                width: control.keyWidth
-                font.capitalization: Font.MixedCase
-            }
-
-            VirtualKey {
-                onKeyPressed: function(vk_clicked, vk_timeout) { onVirtualKeyPressed(vk_clicked, vk_timeout) }
-                onKeyClicked: function(vk_clicked, vk_timeout) { onVirtualKeyClicked(vk_clicked, vk_timeout) }
-                text: (control.modifiers & Qt.ShiftModifier)?"C":"c"
-
-                width: control.keyWidth
-                font.capitalization: Font.MixedCase
-            }
-
-            VirtualKey {
-                onKeyPressed: function(vk_clicked, vk_timeout) { onVirtualKeyPressed(vk_clicked, vk_timeout) }
-                onKeyClicked: function(vk_clicked, vk_timeout) { onVirtualKeyClicked(vk_clicked, vk_timeout) }
-                text: (control.modifiers & Qt.ShiftModifier)?"V":"v"
-
-                width: control.keyWidth
-                font.capitalization: Font.MixedCase
-            }
-
-            VirtualKey {
-                onKeyPressed: function(vk_clicked, vk_timeout) { onVirtualKeyPressed(vk_clicked, vk_timeout) }
-                onKeyClicked: function(vk_clicked, vk_timeout) { onVirtualKeyClicked(vk_clicked, vk_timeout) }
-                text: (control.modifiers & Qt.ShiftModifier)?"B":"b"
-
-                width: control.keyWidth
-                font.capitalization: Font.MixedCase
-            }
-
-            VirtualKey {
-                onKeyPressed: function(vk_clicked, vk_timeout) { onVirtualKeyPressed(vk_clicked, vk_timeout) }
-                onKeyClicked: function(vk_clicked, vk_timeout) { onVirtualKeyClicked(vk_clicked, vk_timeout) }
-                text: (control.modifiers & Qt.ShiftModifier)?"N":"n"
-
-                width: control.keyWidth
-                font.capitalization: Font.MixedCase
-            }
-
-            VirtualKey {
-                onKeyPressed: function(vk_clicked, vk_timeout) { onVirtualKeyPressed(vk_clicked, vk_timeout) }
-                onKeyClicked: function(vk_clicked, vk_timeout) { onVirtualKeyClicked(vk_clicked, vk_timeout) }
-                text: (control.modifiers & Qt.ShiftModifier)?"M":"m"
-
-                width: control.keyWidth
-                font.capitalization: Font.MixedCase
-            }
-
-            VirtualKey {
-                onKeyPressed: function(vk_clicked, vk_timeout) { onCommaPressed(vk_timeout) }
-                onKeyClicked: function(vk_clicked, vk_timeout) { onCommaClicked(vk_timeout) }
-                text: ","
-                key: Qt.Key_Comma
-                width: control.keyWidth
-                font.capitalization: Font.MixedCase
-            }
-
-            VirtualKey {
-                onKeyPressed: function(vk_clicked, vk_timeout) { onPeriodPressed(vk_timeout) }
-                onKeyClicked: function(vk_clicked, vk_timeout) { onPeriodClicked(vk_timeout) }
-                text: "."
-                key: Qt.Key_Period
-                width: control.keyWidth
-                font.capitalization: Font.MixedCase
-            }
-
-            VirtualKey {
-                id: spaceKey
-                onKeyPressed: function(vk_clicked, vk_timeout) { onSpacePressed(vk_timeout) }
-                onKeyClicked: function(vk_clicked, vk_timeout) { onSpaceClicked(vk_timeout) }
-                text: " SPACE "
-                key: Qt.Key_Space
-                width: control.keyWidth
-                font.capitalization: Font.MixedCase
-            }
-
         }
     }
 }

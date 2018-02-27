@@ -55,9 +55,10 @@ Page {
     VirtualKeyboard {
         id: virtalKeyboard
         width: parent.width
-        height: 180
-        keySpacing: 2
-        keyWidth: 64
+        height: page.height / 3
+        keyWidth: page.width / 12
+        backgroundColor: "#494949"
+        keySpacing: 1
         visible: true
         anchors.bottom: parent.bottom
         target: commentInput
