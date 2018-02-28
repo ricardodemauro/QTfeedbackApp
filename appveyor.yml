@@ -26,7 +26,7 @@ build_script:
       & cmake --build . --target install
 after_build:
 on_success:
- - git commit -m "adding build artifacts"
+ 
 artifacts:
 - path: '\bin'
   name: QTFeedbackApp_x86
