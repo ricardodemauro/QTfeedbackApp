@@ -21,7 +21,7 @@ before_build:
   - cmd: mkdir build
   - cmd: cd build
   - cmd: dir
-  - cmd: cmake -G "Visual Studio 14 2015" ../FeedbackApp
+  - cmd: cmake -G "Visual Studio 14 2015" ../QTFeedbackApp
   - cmd: cmake --build . --target install
 build_script:
   - cmd: 
