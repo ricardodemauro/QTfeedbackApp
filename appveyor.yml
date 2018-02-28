@@ -12,7 +12,6 @@ init:
   - cmd: cmake --version
   - cmd: SET "PATH=C:\Qt\5.10.0\msvc2015\bin;%PATH%"
   - cmd: echo %PATH%
-  - cmd: echo &APPVEYOR_REPO_BRANCH&
 install:
   
 before_build:
@@ -26,12 +25,8 @@ build_script:
   - cmd: >-
       & cmake --build . --target install
 after_build:
-  # For once the build has completed
-  - cmd: echo {APPVEYOR_REPO_BRANCH}
-  - cmd: git add .
-  - cmd: git commit -m "adding build artifacts"
-  - cmd: git push --set-upstream origin {branch}
-  - cmd: git push
+on_success:
+ - git commit -m "adding build artifacts"
 artifacts:
 - path: '\bin'
   name: QTFeedbackApp_x86
