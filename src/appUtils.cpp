@@ -1,6 +1,5 @@
 #include <src/appUtils.h>
 
-
 AppUtils::AppUtils(QObject *parent, int fontSize, int secondaryFontSize)
     : QObject(parent),
       m_appFontSize(fontSize),
@@ -14,6 +13,11 @@ uint AppUtils::stringToQtKey(QString text)
     QKeySequence sequence = QKeySequence::fromString(key);
     uint keyCode = sequence[0];
     return keyCode;
+}
+
+QString AppUtils::getService(int serviceIndex)
+{
+    return m_xmlService.getService(serviceIndex);
 }
 
 int AppUtils::FontSize()

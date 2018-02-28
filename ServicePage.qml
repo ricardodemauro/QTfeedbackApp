@@ -15,16 +15,23 @@ Page {
     property int selectedService: 0
 
     Component.onCompleted: function() {
-        if(svc1.checked)
-            serviceSelected(svc1.text)
-        else if(svc2.checked)
-            serviceSelected(svc2.text)
-        else if(svc3.checked)
-            serviceSelected(svc3.text)
-        else if(svc4.checked)
-            serviceSelected(svc4.text)
-        else if(svc5.checked)
-            serviceSelected(svc5.text)
+        pageSelectService(svc1.checked, svc1.text)
+        pageSelectService(svc2.checked, svc2.text)
+        pageSelectService(svc3.checked, svc3.text)
+        pageSelectService(svc4.checked, svc4.text)
+        pageSelectService(svc5.checked, svc5.text)
+        pageSelectService(svc6.checked, svc6.text)
+        pageSelectService(svc7.checked, svc7.text)
+        pageSelectService(svc8.checked, svc8.text)
+        pageSelectService(svc9.checked, svc9.text)
+        pageSelectService(svc10.checked, svc10.text)
+    }
+
+    function pageSelectService(isChecked, value) {
+        console.info("init page checked and value " + isChecked + " " + value)
+        if(isChecked) {
+            serviceSelected(value)
+        }
     }
 
 
@@ -52,14 +59,21 @@ Page {
     }
 
     Column {
-        anchors.centerIn: parent
+        anchors.topMargin: 20
+        anchors.top: labelTitle.bottom
+        anchors.horizontalCenter: parent.horizontalCenter
         GroupBox {
             Column{
-                RadioButton { id: svc1; text: qsTr("Option 1"); checked: true; onClicked: serviceSelected(svc1.text); }
-                RadioButton { id: svc2; text: qsTr("Option 2"); onClicked: serviceSelected(svc2.text) }
-                RadioButton { id: svc3; text: qsTr("Option 3"); onClicked: serviceSelected(svc3.text) }
-                RadioButton { id: svc4; text: qsTr("Option 4"); onClicked: serviceSelected(svc4.text) }
-                RadioButton { id: svc5; text: qsTr("Option 5"); onClicked: serviceSelected(svc5.text) }
+                RadioButton { id: svc1; text: AppUtils.getService(0); checked: true; onClicked: pageSelectService(svc1.checked, svc1.text); }
+                RadioButton { id: svc2; text: AppUtils.getService(1); onClicked: pageSelectService(svc2.checked, svc2.text); }
+                RadioButton { id: svc3; text: AppUtils.getService(2); onClicked: pageSelectService(svc3.checked, svc3.text); }
+                RadioButton { id: svc4; text: AppUtils.getService(3); onClicked: pageSelectService(svc4.checked, svc4.text); }
+                RadioButton { id: svc5; text: AppUtils.getService(4); onClicked: pageSelectService(svc5.checked, svc5.text); }
+                RadioButton { id: svc6; text: AppUtils.getService(5); onClicked: pageSelectService(svc6.checked, svc6.text); }
+                RadioButton { id: svc7; text: AppUtils.getService(6); onClicked: pageSelectService(svc7.checked, svc7.text); }
+                RadioButton { id: svc8; text: AppUtils.getService(7); onClicked: pageSelectService(svc8.checked, svc8.text) }
+                RadioButton { id: svc9; text: AppUtils.getService(8); onClicked: pageSelectService(svc9.checked, svc9.text) }
+                RadioButton { id: svc10; text: AppUtils.getService(9); onClicked: pageSelectService(svc10.checked, svc10.text) }
             }
         }
     }
@@ -67,7 +81,7 @@ Page {
     Label {
         id: labelTitle
         text: qsTr("Please choose the service you're running today:")
-        anchors.topMargin: parent.height * 0.1
+        anchors.topMargin: parent.height * 0.08
         anchors.top: parent.top
         anchors.horizontalCenter: parent.horizontalCenter
         horizontalAlignment: Text.AlignHCenter

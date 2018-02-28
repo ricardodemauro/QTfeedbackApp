@@ -5,6 +5,7 @@
 #include <QJSValue>
 #include <QQmlEngine>
 #include <QKeySequence>
+#include <src/services/xmlService.h>
 
 class AppUtils : public QObject
 {
@@ -19,6 +20,8 @@ public:
 
     Q_INVOKABLE uint stringToQtKey(QString text);
 
+    Q_INVOKABLE QString getService(int serviceIndex);
+
     int FontSize();
 
     int SecondaryFontSize();
@@ -30,6 +33,7 @@ signals:
 private:
     int m_appFontSize;
     int m_appSecondaryFontSize;
+    Services::XmlService m_xmlService;
 };
 
 
