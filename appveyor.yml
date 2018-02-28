@@ -23,7 +23,7 @@ before_build:
   
 build_script:
   - cmd: >-
-      & cmake --build . --target install
+      & cmake --build . --target install --config Release
 after_build:
 on_success:
  
