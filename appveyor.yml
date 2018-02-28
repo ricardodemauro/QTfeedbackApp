@@ -12,6 +12,7 @@ init:
   - cmd: cmake --version
   - cmd: SET "PATH=C:\Qt\5.10.0\msvc2015\bin;%PATH%"
   - cmd: echo %PATH%
+  - cmd: echo &APPVEYOR_REPO_BRANCH&
 install:
   
 before_build:
@@ -26,7 +27,7 @@ build_script:
       & cmake --build . --target install
 after_build:
   # For once the build has completed
-  - cmd: echo {branch}
+  - cmd: echo {APPVEYOR_REPO_BRANCH}
   - cmd: git add .
   - cmd: git commit -m "adding build artifacts"
   - cmd: git push --set-upstream origin {branch}
