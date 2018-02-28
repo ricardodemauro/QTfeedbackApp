@@ -35,6 +35,7 @@ Page {
             id: commentInput
             width: parent.width - doneButton.width - margin * 3
             text: comment
+            font.pixelSize: AppUtils.FontSize
             height: parent.height / 2
             anchors.fill: parent
             placeholderText: "Comment here"
