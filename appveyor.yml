@@ -16,7 +16,7 @@ install:
   #- npm install -g npm
   #- npm install
 before_build:
-  - cmd: SET "PATH=C:\Qt\5.10.0\msvc2015;%PATH%"
+  - cmd: SET "PATH=C:\Qt\5.10.0\msvc2015\bin;%PATH%"
   - cmd: echo %PATH%
   - cmd: >- 
       & cd ..
