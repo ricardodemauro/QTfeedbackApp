@@ -25,7 +25,7 @@ Page {
     FocusScope {
         id: root
         width: parent.width - doneButton.width - margin * 3
-        height: parent.height / 2
+        height: (parent.height / 2) - 20
         anchors.left: parent.left
         anchors.leftMargin: margin
         anchors.topMargin: margin
@@ -55,7 +55,7 @@ Page {
     VirtualKeyboard {
         id: virtalKeyboard
         width: parent.width
-        height: page.height / 3
+        height: (parent.height / 2) - 20
         keyWidth: page.width / 12
         backgroundColor: "#494949"
         keySpacing: 1
