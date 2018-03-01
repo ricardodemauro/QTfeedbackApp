@@ -72,5 +72,6 @@ Thumbs.db
 *.exe
 
 .vs
-CMakeLists.txt.user
+*.user
 bin
+*.zip
