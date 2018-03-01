@@ -18,9 +18,9 @@ ApplicationWindow {
     }
 
     Component.onCompleted: {
-        //applicationWindow.showFullScreen()
-        applicationWindow.setHeight(800)
-        applicationWindow.setWidth(1280)
+        applicationWindow.showFullScreen()
+        //applicationWindow.setHeight(800)
+        //applicationWindow.setWidth(1280)
         mainVM.initHandler()
     }
 

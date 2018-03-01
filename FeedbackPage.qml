@@ -34,6 +34,8 @@ Page {
     Rectangle {
         id: rectangle
         height: pageFeedback.height / 4
+        color: "#00000000"
+        border.color: "#00000000"
         anchors.top: parent.top
         anchors.right: parent.right
         anchors.left: parent.left
