@@ -22,6 +22,12 @@ public:
 
     Q_INVOKABLE QString getService(int serviceIndex);
 
+    Q_INVOKABLE QString getFeedbackPageTitle();
+
+    Q_INVOKABLE QString getFeedbackPageSubtitle();
+
+    Q_INVOKABLE QString getFeedbackPageSubtitle2();
+
     int FontSize();
 
     int SecondaryFontSize();

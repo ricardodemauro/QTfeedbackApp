@@ -31,15 +31,44 @@ Page {
         }
     }
 
-    Label {
-        id: labelTitle
-        text: "How likely are you to recommend our service to friends and\nfamily if they needed similar care or treatment?"
-        font.pointSize: AppUtils.FontSize
-        horizontalAlignment: Text.AlignHCenter
-        anchors.topMargin: parent.height * 0.1
+    Rectangle {
+        id: rectangle
+        height: pageFeedback.height / 4
         anchors.top: parent.top
-        anchors.horizontalCenter: parent.horizontalCenter
+        anchors.right: parent.right
+        anchors.left: parent.left
+
+        ColumnLayout {
+            x: 204
+            y: 263
+            spacing: 2
+            anchors.verticalCenter: parent.verticalCenter
+            anchors.horizontalCenter: parent.horizontalCenter
+
+            Label {
+                id: labelTitle
+                text: AppUtils.getFeedbackPageTitle()
+                Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
+                font.pointSize: AppUtils.FontSize
+            }
+
+            Label {
+                id: labelSubtitle
+                text: AppUtils.getFeedbackPageSubtitle()
+                Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
+                font.pointSize: AppUtils.FontSize
+            }
+
+            Label {
+                id: labelSubtitle2
+                text: AppUtils.getFeedbackPageSubtitle2()
+                Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
+                font.pointSize: AppUtils.FontSize
+            }
+        }
     }
+
+
 
     RowLayout {
         id: layout

@@ -17,7 +17,7 @@ namespace Constants
     const QString MESSAGE_NAVIGATE = "Nav";
 
     const QString FILE_CSV = "feedback.csv";
-    const QString FILE_SERVICES = "service.xml";
+    const QString FILE_CONFIGURATION = "configuration.xml";
 
     const int DEFAULT_SELECTED_FEEDBACK = 1;
 

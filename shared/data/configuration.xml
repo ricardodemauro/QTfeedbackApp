@@ -1,0 +1,19 @@
+<configuration>
+    <services>
+            <service>Xml Option 1</service>
+            <service>Xml Option 2</service>
+            <service>Xml Option 3</service>
+            <service>Xml Option 4</service>
+            <service>Xml Option 5</service>
+            <service>Xml Option 6</service>
+            <service>Xml Option 7</service>
+            <service>Xml Option 8</service>
+            <service>Xml Option 9</service>
+            <service>Xml Option 10</service>
+    </services>
+    <feedback>
+        <title>Setence 1</title>
+        <subtitle>How likely are you to recommend our service to friends</subtitle>
+        <subtitle2>and family if they needed similar care or treatment?</subtitle2>
+    </feedback>
+</configuration>

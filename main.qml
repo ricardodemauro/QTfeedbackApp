@@ -18,36 +18,10 @@ ApplicationWindow {
     }
 
     Component.onCompleted: {
-        applicationWindow.showFullScreen()
-        //applicationWindow.setHeight(800)
-        //applicationWindow.setWidth(1280)
+        //applicationWindow.showFullScreen()
+        applicationWindow.setHeight(800)
+        applicationWindow.setWidth(1280)
         mainVM.initHandler()
-    }
-
-    header: ToolBar {
-        visible: Window.Hidden
-        RowLayout {
-            anchors.fill: parent
-            ToolButton {
-                text: "‹"
-                enabled: view.currentIndex > 0
-                onClicked: view.currentIndex--
-                visible: false
-            }
-            Label {
-                text: view.children[view.currentIndex].title
-                elide: Label.ElideRight
-                horizontalAlignment: Qt.AlignHCenter
-                verticalAlignment: Qt.AlignVCenter
-                Layout.fillWidth: true
-            }
-            ToolButton {
-                text: "›"
-                enabled: view.currentIndex + 1 < view.count
-                onClicked: view.currentIndex++
-                visible: false
-            }
-        }
     }
 
     StackLayout {

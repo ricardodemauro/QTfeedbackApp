@@ -20,6 +20,21 @@ QString AppUtils::getService(int serviceIndex)
     return m_xmlService.getService(serviceIndex);
 }
 
+QString AppUtils::getFeedbackPageTitle()
+{
+    return m_xmlService.getFeedbackTitle();
+}
+
+QString AppUtils::getFeedbackPageSubtitle()
+{
+    return m_xmlService.getFeedbackSubtitle();
+}
+
+QString AppUtils::getFeedbackPageSubtitle2()
+{
+    return m_xmlService.getFeedbackSubtitle2();
+}
+
 int AppUtils::FontSize()
 {
     return m_appFontSize;
